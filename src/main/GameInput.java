@@ -10,7 +10,8 @@ public class GameInput {
     private char[][] map;
     private HashMap<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap;
 
-    public GameInput(int n, int m, int p, int r, char[][] map, Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap, Map<Integer, ArrayList<Character>> playerMoves) {
+    public GameInput(int n, int m, int p, int r, char[][] map, Map<Integer, HashMap<String,
+            ArrayList<Integer>>> playerOnTheMap, Map<Integer, ArrayList<Character>> playerMoves) {
         N = n;
         M = m;
         nPlayers = p;
