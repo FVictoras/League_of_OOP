@@ -9,10 +9,16 @@ import java.util.Set;
 
 public class PlayerFactory {
     private HashMap<Integer, HashMap<String, ArrayList<Integer>>> map;
+
+    /**
+     * Se primeste HashMapul cu jucatorii cititi. Acestia se initializeaza si se
+     * returneaza un ArrayList cu obiectele instantiate.
+     */
     public PlayerFactory(HashMap<Integer, HashMap<String, ArrayList<Integer>>> map) {
         this.map = map;
     }
-    public ArrayList<Hero> allHeroes () {
+
+    public ArrayList<Hero> allHeroes() {
         ArrayList<Hero> myHeroes = new ArrayList<Hero>();
         Set<Map.Entry<Integer, HashMap<String, ArrayList<Integer>>>> s1 = map.entrySet();
         for (Map.Entry<Integer, HashMap<String, ArrayList<Integer>>> it1 : s1) {
@@ -25,6 +31,9 @@ public class PlayerFactory {
         return myHeroes;
     }
 
+    /**
+     * Se creeaza instanta corespunzatoare fiecarui erou.
+     */
     private Hero createHero(String heroType, ArrayList<Integer> coordinates) {
         if (heroType == null) {
             return null;

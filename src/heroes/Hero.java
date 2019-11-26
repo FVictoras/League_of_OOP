@@ -7,6 +7,19 @@ public abstract class Hero {
     private int xCoordonate;
     private int yCoordonate;
     private int damageOvertime;
+    private boolean stunned;
+
+    public boolean isStunned() {
+        return stunned;
+    }
+
+    public void setStunned(boolean stunned) {
+        this.stunned = stunned;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 
     public Hero(int x, int y) {
         this.level = 0;
@@ -35,7 +48,9 @@ public abstract class Hero {
         this.damageOvertime = damageOvertime;
     }
 
-    public String emote() { return null; }
+    public String emote() {
+        return null;
+    }
 
     abstract public void accept(Hero H);
 

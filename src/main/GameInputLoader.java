@@ -15,7 +15,11 @@ public class GameInputLoader {
         this.mInputPath = mInputPath;
         this.mOutputPath = mOutputPath;
     }
-
+    /**
+    * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>
+    * Harta este intr-o matrice de charuri
+    * Mutarile care trebuiesc facute de jucatori sunt scrise ca
+     */
     public GameInput load() {
         int N = 0;
         int M = 0;
