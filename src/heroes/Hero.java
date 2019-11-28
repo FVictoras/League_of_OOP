@@ -53,6 +53,8 @@ public abstract class Hero {
         return null;
     }
 
+    abstract public void noLandBonus();
+
     abstract public void accept(Hero H);
 
     abstract void interactWith(Pyromancer P);

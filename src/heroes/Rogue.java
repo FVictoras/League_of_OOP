@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class Rogue extends Hero {
     private boolean woodsBonus = false;
+    private float backstabBonus = 0;
+    private float paralysisBonus = 0;
 
     private int totalBackstabs = 0;
 
@@ -23,27 +25,43 @@ public class Rogue extends Hero {
     }
 
     public int Backstab() {
-        // TODO: Adauga conditia de teren!!
-        if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED) {
+        float tileBonus = 1f;
+        if (woodsBonus) {
+            tileBonus = Constants.WOODS_BONUS;
+        }
+        if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED && woodsBonus) {
             this.totalBackstabs = 0;
-            return Math.round(Constants.BACKSTAB_CRITICAL_BONUS * (Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG * this.getLevel())));
+            return Math.round(tileBonus *  (Constants.BACKSTAB_CRITICAL_BONUS * (backstabBonus *
+                    (Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG *
+                            this.getLevel())))));
         } else {
-            return Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG * this.getLevel());
+            this.totalBackstabs++;
+            return Math.round(tileBonus * (backstabBonus * (Constants.BACKSTAB_BASE_DMG +
+                    (Constants.BACKSTAB_INCREASED_DMG * this.getLevel()))));
         }
     }
 
     public ArrayList<Integer> Paralysis(Hero H) {
-        // TODO: Adauga conditia de teren!!!
+        float tileBonus = 1f;
         int overtimeRounds = Constants.PARALYSIS_OVERTIME_ROUNDS;
+        if (woodsBonus) {
+            tileBonus = Constants.WOODS_BONUS;
+            overtimeRounds = Constants.PARALYSIS_OVERTIME_BONUS_ROUNDS;
+        }
         ArrayList<Integer> paralysis = new ArrayList<Integer>(3);
-        paralysis.add(Constants.PARALYSIS_BASE_DMG + (Constants.PARALYSIS_INCREASED_DMG * this.getLevel()));
+        paralysis.add(Math.round(tileBonus * (paralysisBonus *(Constants.PARALYSIS_BASE_DMG +
+                (Constants.PARALYSIS_INCREASED_DMG * this.getLevel())))));
         paralysis.add(overtimeRounds);
         return paralysis;
-
     }
 
     public void accept(Hero H) {
         H.interactWith(this);
+    }
+
+    @Override
+    public void noLandBonus() {
+        this.setWoodsBonus(false);
     }
 
     @Override

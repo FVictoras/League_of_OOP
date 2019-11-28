@@ -9,6 +9,8 @@ public class DesertModifier implements TileBonusStrategy {
     public void setPlayersStrategy(Hero h1) {
         if (h1 instanceof Wizard) {
             ((Wizard) h1).setDesertBonus(true);
+        } else {
+            h1.noLandBonus();
         }
     }
 }

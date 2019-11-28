@@ -5,6 +5,8 @@ import heroes.utils.UtilsHero;
 
 public class Knight extends Hero {
     private boolean landBonus = false;
+    private float executeBonus = 1f;
+    private float slamBonus = 1f;
 
     public Knight(int x, int y) {
         super(x, y);
@@ -20,9 +22,15 @@ public class Knight extends Hero {
     }
 
     public int Execute(Hero H) {
-        float reqHp = (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY * H.getLevel())) * UtilsHero.getMaxHp(H);
+        float bonusTile = 1f;
+        if (landBonus) {
+            bonusTile = Constants.LAND_BONUS;
+        }
+        float reqHp = (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY *
+                        H.getLevel())) * UtilsHero.getMaxHp(H);
         if (H.getHealth() > reqHp) {
-            return Constants.EXECUTE_BASE_DMG + Constants.EXECUTE_INCREASED_DMG * this.getLevel();
+            return Math.round(bonusTile * (executeBonus * (Constants.EXECUTE_BASE_DMG +
+                    Constants.EXECUTE_INCREASED_DMG * this.getLevel())));
         } else {
             return H.getHealth();
         }
@@ -30,11 +38,21 @@ public class Knight extends Hero {
 
     public int Slam(Hero H) {
         H.setStunned(true);
-        return Constants.SLAM_BASE_DMG + Constants.SLAM_INCREASED_DMG * this.getLevel();
+        float bonusTile = 1f;
+        if (landBonus) {
+            bonusTile = Constants.LAND_BONUS;
+        }
+        return Math.round(bonusTile * (slamBonus * (Constants.SLAM_BASE_DMG +
+                Constants.SLAM_INCREASED_DMG * this.getLevel())));
     }
 
     public void accept(Hero H) {
         H.interactWith(this);
+    }
+
+    @Override
+    public void noLandBonus() {
+        this.setLandBonus(false);
     }
 
     @Override

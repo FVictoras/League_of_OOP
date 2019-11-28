@@ -27,15 +27,15 @@ public class Main {
         GameInputLoader loader = new GameInputLoader("E:\\Java Development\\League of " + "OOP" +
                 "\\in\\4x4.in", "E:\\Java Development\\League of OOP\\in\\output.txt");
         GameInput gameInput = loader.load();
-        Tester.printInputPage(gameInput);
+       // Tester.printInputPage(gameInput);
         PlayerFactory factory = new PlayerFactory(gameInput.getPlayerOnTheMap());
         ArrayList<Hero> myHeroes = factory.allHeroes();
-        for (Hero a : myHeroes) {
-            System.out.println(a.emote() + " " + a.getxCoordonate() + " " + a.getyCoordonate() +
-                    "   am viata: " + a.getHealth() + "hp");
-        }
-        myHeroes.get(0).accept(myHeroes.get(1));
-        Context context = new Context('V');
+//        for (Hero a : myHeroes) {
+//            System.out.println(a.emote() + " " + a.getxCoordonate() + " " + a.getyCoordonate() +
+//                    "   am viata: " + a.getHealth() + "hp");
+//        }
+//        myHeroes.get(0).accept(myHeroes.get(1));
+        Context context = new Context('W');
         context.executeStrategy(myHeroes.get(0));
     }
 

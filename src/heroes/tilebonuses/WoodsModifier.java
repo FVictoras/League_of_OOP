@@ -9,6 +9,8 @@ public class WoodsModifier implements TileBonusStrategy {
     public void setPlayersStrategy(Hero h1) {
         if (h1 instanceof Rogue) {
             ((Rogue) h1).setWoodsBonus(true);
+        } else {
+            h1.noLandBonus();
         }
     }
 }

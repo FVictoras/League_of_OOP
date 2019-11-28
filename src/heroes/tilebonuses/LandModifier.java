@@ -9,6 +9,8 @@ public class LandModifier implements TileBonusStrategy {
     public void setPlayersStrategy(Hero h1) {
         if (h1 instanceof Knight) {
             ((Knight) h1).setLandBonus(true);
+        } else {
+            h1.noLandBonus();
         }
     }
 }
