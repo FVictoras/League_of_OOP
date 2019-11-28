@@ -5,12 +5,21 @@ import common.Constants;
 import java.util.ArrayList;
 
 public class Rogue extends Hero {
+    private boolean woodsBonus = false;
 
     private int totalBackstabs = 0;
 
     public Rogue(int x, int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_ROGUE);
+    }
+
+    public String emote() {
+        return "Sunt un rogue";
+    }
+
+    public void setWoodsBonus(boolean woodsBonus) {
+        this.woodsBonus = woodsBonus;
     }
 
     public int Backstab() {
@@ -34,9 +43,6 @@ public class Rogue extends Hero {
 
     }
 
-    public String emote() {
-        return "Sunt un rogue";
-    }
 
     public void accept(Hero H) {
         H.interactWith(this);

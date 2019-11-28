@@ -4,6 +4,8 @@ import common.Constants;
 import heroes.utils.UtilsHero;
 
 public class Wizard extends Hero {
+    boolean desertBonus = false;
+
     public Wizard(int x, int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_WIZARD);
@@ -11,6 +13,10 @@ public class Wizard extends Hero {
 
     public String emote() {
         return "Sunt un wizard";
+    }
+
+    public void setDesertBonus(boolean desertBonus) {
+        this.desertBonus = desertBonus;
     }
 
     public int Drain(Hero H) {

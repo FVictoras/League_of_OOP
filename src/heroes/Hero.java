@@ -8,6 +8,7 @@ public abstract class Hero {
     private int yCoordonate;
     private int damageOvertime;
     private boolean stunned;
+    private float raceModifier;
 
     public boolean isStunned() {
         return stunned;

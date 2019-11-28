@@ -5,6 +5,8 @@ import common.Constants;
 import java.util.ArrayList;
 
 public class Pyromancer extends Hero {
+    boolean volcanicBonus = false;
+
     public Pyromancer(int x, int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_PYRO);
@@ -28,6 +30,10 @@ public class Pyromancer extends Hero {
 
     public void accept(Hero H) {
         H.interactWith(this);
+    }
+
+    public void setVolcanicBonus(boolean volcanicBonus) {
+        this.volcanicBonus = volcanicBonus;
     }
 
     @Override

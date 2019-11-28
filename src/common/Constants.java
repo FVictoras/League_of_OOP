@@ -49,6 +49,13 @@ public final class Constants {
     public static final int PARALYSIS_INCREASED_DMG = 10;
     public static final int PARALYSIS_OVERTIME_ROUNDS = 3;
     public static final int PARALYSIS_OVERTIME_BONUS_ROUNDS = 6;
+
+
+    // Tile bonuses
+    public static final float LAND_BONUS = 15/100f;
+    public static final float VOLCANIC_BONUS = 25/100f;
+    public static final float DESERT_BONUS = 10/100f;
+    public static final float WOODS_BONUS = 15/100f;
 }
 
 /**

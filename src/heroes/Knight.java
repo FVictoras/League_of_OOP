@@ -4,6 +4,8 @@ import common.Constants;
 import heroes.utils.UtilsHero;
 
 public class Knight extends Hero {
+    private boolean landBonus = false;
+
     public Knight(int x, int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_KNIGHT);
@@ -11,6 +13,10 @@ public class Knight extends Hero {
 
     public String emote() {
         return "Sunt un knight";
+    }
+
+    public void setLandBonus(boolean landBonus) {
+        this.landBonus = landBonus;
     }
 
     public int Execute(Hero H) {
@@ -50,4 +56,6 @@ public class Knight extends Hero {
     void interactWith(Rogue R) {
         System.out.println("Sunt knight, ma ataca un Rouge");
     }
+
+
 }

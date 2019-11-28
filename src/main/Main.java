@@ -2,6 +2,7 @@ package main;
 
 import factories.PlayerFactory;
 import heroes.Hero;
+import heroes.bonuses.Context;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ public class Main {
                     "   am viata: " + a.getHealth() + "hp");
         }
         myHeroes.get(0).accept(myHeroes.get(1));
+        Context context = new Context('V');
+        context.executeStrategy(myHeroes.get(0));
     }
 
 
