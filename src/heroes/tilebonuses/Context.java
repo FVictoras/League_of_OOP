@@ -1,4 +1,4 @@
-package heroes.bonuses;
+package heroes.tilebonuses;
 
 import heroes.Hero;
 

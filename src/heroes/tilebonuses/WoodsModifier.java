@@ -1,9 +1,9 @@
-package heroes.bonuses;
+package heroes.tilebonuses;
 
 import heroes.Hero;
 import heroes.Rogue;
 
-public class WoodsModifier implements TileBonusStrategy{
+public class WoodsModifier implements TileBonusStrategy {
 
     @Override
     public void setPlayersStrategy(Hero h1) {

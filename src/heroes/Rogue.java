@@ -26,8 +26,7 @@ public class Rogue extends Hero {
         // TODO: Adauga conditia de teren!!
         if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED) {
             this.totalBackstabs = 0;
-            return Math.round(Constants.BACKSTAB_CRITICAL_BONUS * (Constants.BACKSTAB_BASE_DMG +
-                    (Constants.BACKSTAB_INCREASED_DMG * this.getLevel())));
+            return Math.round(Constants.BACKSTAB_CRITICAL_BONUS * (Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG * this.getLevel())));
         } else {
             return Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG * this.getLevel());
         }
@@ -42,7 +41,6 @@ public class Rogue extends Hero {
         return paralysis;
 
     }
-
 
     public void accept(Hero H) {
         H.interactWith(this);

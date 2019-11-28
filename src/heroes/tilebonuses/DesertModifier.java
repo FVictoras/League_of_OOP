@@ -1,6 +1,5 @@
-package heroes.bonuses;
+package heroes.tilebonuses;
 
-import common.Constants;
 import heroes.Hero;
 import heroes.Wizard;
 

@@ -2,7 +2,7 @@ package main;
 
 import factories.PlayerFactory;
 import heroes.Hero;
-import heroes.bonuses.Context;
+import heroes.tilebonuses.Context;
 
 import java.util.ArrayList;
 
