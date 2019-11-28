@@ -27,8 +27,10 @@ public class Wizard extends Hero {
         if (desertBonus) {
             bonusTile = Constants.DESERT_BONUS;
         }
-        float percent = Constants.DRAIN_BASE_PERCENT + (Constants.DRAIN_INCREASED_PERCENT * this.getLevel());
-        float baseHp = Math.min(Constants.DRAIN_BASE_CONSTANT * UtilsHero.getMaxHp(H), H.getHealth());
+        float percent =
+                Constants.DRAIN_BASE_PERCENT + (Constants.DRAIN_INCREASED_PERCENT * this.getLevel());
+        float baseHp = Math.min(Constants.DRAIN_BASE_CONSTANT * UtilsHero.getMaxHp(H),
+                H.getHealth());
         return Math.round(bonusTile * ((drainRaceBonus * percent) * baseHp));
     }
 

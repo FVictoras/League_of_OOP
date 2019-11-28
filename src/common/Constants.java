@@ -15,7 +15,7 @@ public final class Constants {
 
     // Skills Zone
     // Fireblast
-    public static final int FIREBLAST_BASE_DMG = 500;
+    public static final int FIREBLAST_BASE_DMG = 350;
     public static final int FIREBLAST_INCREASED_DMG = 50;
     // Ignite
     public static final int IGNITE_BASE_DMG = 150;
