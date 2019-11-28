@@ -19,9 +19,10 @@ public class Pyromancer extends Hero {
     }
 
     public ArrayList<Integer> Ignite() {
-        ArrayList<Integer> igniteDamage = new ArrayList<Integer>(2);
+        ArrayList<Integer> igniteDamage = new ArrayList<Integer>(3);
         igniteDamage.add(Constants.IGNITE_BASE_DMG + this.getLevel() * Constants.IGNITE_INCREASED_DMG);
         igniteDamage.add(Constants.IGNITE_BASE_OVERTIME + this.getLevel() * Constants.IGNITE_INCREASED_OVERTIME);
+        igniteDamage.add(Constants.IGNITE_DURATION_OVERTIME);
         return igniteDamage;
     }
 
