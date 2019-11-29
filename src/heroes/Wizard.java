@@ -17,11 +17,6 @@ public class Wizard extends Hero {
         return "Sunt un wizard";
     }
 
-
-    public void setDesertBonus(boolean desertBonus) {
-        this.desertBonus = desertBonus;
-    }
-
     public int Drain(Hero H) {
         float bonusTile = 1f;
         if (desertBonus) {
@@ -44,9 +39,15 @@ public class Wizard extends Hero {
                 Constants.DEFLECT_MAX_PERCENT) * dmgReceived)));
     }
 
+    public void setDesertBonus(boolean desertBonus) {
+        this.desertBonus = desertBonus;
+    }
+
     public void accept(Hero H) {
         H.interactWith(this);
     }
+
+//    public void calculateDmgReceived()
 
     @Override
     public void noLandBonus() {
@@ -55,24 +56,43 @@ public class Wizard extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
+        if (P.isAvailable()) P.interactWith(this);
         this.drainRaceBonus = Constants.DRAIN_P_B;
         this.deflectRaceBonus = Constants.DEFLECT_P_B;
+        int dmgReceived = Math.round(this.getLastDamageReceived().get(0) * (1/Constants.FIREBLAST_W_B)
+                + this.getLastDamageReceived().get(1) * (1/Constants.IGNITE_W_B));
+        P.receiveDamage(this.Drain(P) + this.Deflect(dmgReceived));
+        this.setAvailable(false);
     }
 
     @Override
     void interactWith(Knight K) {
+        if (K.isAvailable()) K.interactWith(this);
         this.drainRaceBonus = Constants.DRAIN_K_B;
         this.deflectRaceBonus = Constants.DEFLECT_K_B;
+        int dmgReceived = Math.round(this.getLastDamageReceived().get(0) * (1/Constants.EXECUTE_W_B)
+                + this.getLastDamageReceived().get(1) * (1/Constants.SLAM_W_B));
+        K.receiveDamage(this.Drain(K) + this.Deflect(dmgReceived));
+        this.setAvailable(false);
     }
 
     @Override
     void interactWith(Wizard W) {
+        this.setAvailable(false);
         this.drainRaceBonus = Constants.DRAIN_W_B;
+        W.receiveDamage(this.Drain(W));
+        if (W.isAvailable()) W.interactWith(this);
     }
 
     @Override
     void interactWith(Rogue R) {
+        if (R.isAvailable()) R.interactWith(this);
         this.drainRaceBonus = Constants.DRAIN_R_B;
         this.deflectRaceBonus = Constants.DEFLECT_R_B;
+        int dmgReceived =
+                Math.round(this.getLastDamageReceived().get(0) * (1/Constants.BACKSTAB_W_B)
+                + this.getLastDamageReceived().get(1) * (1/Constants.PARALYSIS_W_B));
+        R.receiveDamage(this.Drain(R) + this.Deflect(dmgReceived));
+        this.setAvailable(false);
     }
 }

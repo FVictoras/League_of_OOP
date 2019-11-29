@@ -1,5 +1,7 @@
 package heroes;
 
+import java.util.ArrayList;
+
 public abstract class Hero {
     private int health;
     private int XP;
@@ -7,26 +9,41 @@ public abstract class Hero {
     private int xCoordonate;
     private int yCoordonate;
     private int damageOvertime;
-    private boolean stunned;
-    private float raceModifier;
+    private int roundsOvertime;
+    private int roundsStunned;
+    private ArrayList<Integer> lastDamageReceived;
 
-    public boolean isStunned() {
-        return stunned;
+    public ArrayList<Integer> getLastDamageReceived() {
+        return lastDamageReceived;
     }
 
-    public void setStunned(boolean stunned) {
-        this.stunned = stunned;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public int getLevel() {
-        return level;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
+
+    private boolean available;
 
     public Hero(int x, int y) {
         this.level = 0;
         this.XP = 0;
         this.xCoordonate = x;
         this.yCoordonate = y;
+        this.roundsStunned = 0;
+        this.damageOvertime = 0;
+        this.roundsOvertime = 0;
+        this.available = true;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public int getxCoordonate() {
@@ -37,16 +54,31 @@ public abstract class Hero {
         return yCoordonate;
     }
 
-    public int getHealth() {
-        return health;
+    public int getStunned() {
+        return roundsStunned;
+    }
+
+    public void setStunned(int stunned) {
+        this.roundsStunned = stunned;
     }
 
     void setHealth(int health) {
         this.health = health;
     }
 
-    void setDamageOvertime(int damageOvertime) {
+    void receiveDamage (int damage) {
+        this.health = this.health - damage;
+    }
+    void receiveDamage (int damageFirstSkill, int damageSecondSkill) {
+        this.health = this.health - damageFirstSkill - damageSecondSkill;
+        this.lastDamageReceived = new ArrayList<Integer>();
+        this.lastDamageReceived.add(damageFirstSkill);
+        this.lastDamageReceived.add(damageSecondSkill);
+    }
+
+    void setDamageOvertime(int damageOvertime, int roundsOvertime) {
         this.damageOvertime = damageOvertime;
+        this.roundsOvertime = roundsOvertime;
     }
 
     public String emote() {

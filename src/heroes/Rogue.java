@@ -20,10 +20,6 @@ public class Rogue extends Hero {
         return "Sunt un rogue";
     }
 
-    public void setWoodsBonus(boolean woodsBonus) {
-        this.woodsBonus = woodsBonus;
-    }
-
     public int Backstab() {
         float tileBonus = 1f;
         if (woodsBonus) {
@@ -52,7 +48,13 @@ public class Rogue extends Hero {
         paralysis.add(Math.round(tileBonus * (paralysisBonus *(Constants.PARALYSIS_BASE_DMG +
                 (Constants.PARALYSIS_INCREASED_DMG * this.getLevel())))));
         paralysis.add(overtimeRounds);
+        H.setDamageOvertime(paralysis.get(0), paralysis.get(1));
+        H.setStunned(paralysis.get(1));
         return paralysis;
+    }
+
+    public void setWoodsBonus(boolean woodsBonus) {
+        this.woodsBonus = woodsBonus;
     }
 
     public void accept(Hero H) {
@@ -66,25 +68,37 @@ public class Rogue extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
+        this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_P_B;
         this.paralysisBonus = Constants.PARALYSIS_P_B;
+        P.receiveDamage(this.Backstab() + this.Paralysis(P).get(0));
+        if (P.isAvailable()) P.interactWith(this);
     }
 
     @Override
     void interactWith(Knight K) {
+        this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_K_B;
         this.paralysisBonus = Constants.PARALYSIS_K_B;
+        K.receiveDamage(this.Backstab() + this.Paralysis(K).get(0));
+        if (K.isAvailable()) K.interactWith(this);
     }
 
     @Override
     void interactWith(Wizard W) {
+        this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_W_B;
         this.paralysisBonus = Constants.PARALYSIS_W_B;
+        W.receiveDamage(this.Backstab(), this.Paralysis(W).get(0));
+        if (W.isAvailable()) W.interactWith(this);
     }
 
     @Override
     void interactWith(Rogue R) {
+        this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_R_B;
         this.paralysisBonus = Constants.PARALYSIS_R_B;
+        R.receiveDamage(this.Backstab() + this.Paralysis(R).get(0));
+        if (R.isAvailable()) R.interactWith(this);
     }
 }

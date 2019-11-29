@@ -17,10 +17,6 @@ public class Knight extends Hero {
         return "Sunt un knight";
     }
 
-    public void setLandBonus(boolean landBonus) {
-        this.landBonus = landBonus;
-    }
-
     public int Execute(Hero H) {
         float bonusTile = 1f;
         if (landBonus) {
@@ -37,13 +33,17 @@ public class Knight extends Hero {
     }
 
     public int Slam(Hero H) {
-        H.setStunned(true);
+        H.setStunned(1);
         float bonusTile = 1f;
         if (landBonus) {
             bonusTile = Constants.LAND_BONUS;
         }
         return Math.round(bonusTile * (slamBonus * (Constants.SLAM_BASE_DMG +
                 Constants.SLAM_INCREASED_DMG * this.getLevel())));
+    }
+
+    public void setLandBonus(boolean landBonus) {
+        this.landBonus = landBonus;
     }
 
     public void accept(Hero H) {
@@ -57,30 +57,44 @@ public class Knight extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
+        this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_P_B;
         this.slamBonus = Constants.SLAM_P_B;
-        System.out.println("Sunt knight, ma ataca un Pyro");
+        System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
+        P.receiveDamage(this.Execute(P)+this.Slam(P));
+        if (P.isAvailable()) P.interactWith(this);
+
     }
 
     @Override
     void interactWith(Knight K) {
+        this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_K_B;
         this.slamBonus = Constants.SLAM_K_B;
-        System.out.println("Sunt knight, ma ataca un Knight");
+        System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
+        K.receiveDamage(this.Execute(K)+this.Slam(K));
+        if (K.isAvailable()) K.interactWith(this);
     }
 
     @Override
     void interactWith(Wizard W) {
+        this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_W_B;
         this.slamBonus = Constants.SLAM_W_B;
-        System.out.println("Sunt knight, ma ataca un Wizard");
+        System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
+        W.receiveDamage(this.Execute(W), this.Slam(W));
+        if (W.isAvailable()) W.interactWith(this);
+
     }
 
     @Override
     void interactWith(Rogue R) {
+        this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_R_B;
         this.slamBonus = Constants.SLAM_R_B;
-        System.out.println("Sunt knight, ma ataca un Rouge");
+        System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
+        R.receiveDamage(this.Execute(R)+this.Slam(R));
+        if (R.isAvailable()) R.interactWith(this);
     }
 
 
