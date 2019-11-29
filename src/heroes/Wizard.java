@@ -55,21 +55,24 @@ public class Wizard extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
-
+        this.drainRaceBonus = Constants.DRAIN_P_B;
+        this.deflectRaceBonus = Constants.DEFLECT_P_B;
     }
 
     @Override
-    void interactWith(Knight P) {
-
+    void interactWith(Knight K) {
+        this.drainRaceBonus = Constants.DRAIN_K_B;
+        this.deflectRaceBonus = Constants.DEFLECT_K_B;
     }
 
     @Override
-    void interactWith(Wizard B) {
-
+    void interactWith(Wizard W) {
+        this.drainRaceBonus = Constants.DRAIN_W_B;
     }
 
     @Override
     void interactWith(Rogue R) {
-
+        this.drainRaceBonus = Constants.DRAIN_R_B;
+        this.deflectRaceBonus = Constants.DEFLECT_R_B;
     }
 }

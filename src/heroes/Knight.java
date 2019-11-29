@@ -57,21 +57,29 @@ public class Knight extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
+        this.executeBonus = Constants.EXECUTE_P_B;
+        this.slamBonus = Constants.SLAM_P_B;
         System.out.println("Sunt knight, ma ataca un Pyro");
     }
 
     @Override
-    void interactWith(Knight P) {
+    void interactWith(Knight K) {
+        this.executeBonus = Constants.EXECUTE_K_B;
+        this.slamBonus = Constants.SLAM_K_B;
         System.out.println("Sunt knight, ma ataca un Knight");
     }
 
     @Override
-    void interactWith(Wizard B) {
+    void interactWith(Wizard W) {
+        this.executeBonus = Constants.EXECUTE_W_B;
+        this.slamBonus = Constants.SLAM_W_B;
         System.out.println("Sunt knight, ma ataca un Wizard");
     }
 
     @Override
     void interactWith(Rogue R) {
+        this.executeBonus = Constants.EXECUTE_R_B;
+        this.slamBonus = Constants.SLAM_R_B;
         System.out.println("Sunt knight, ma ataca un Rouge");
     }
 

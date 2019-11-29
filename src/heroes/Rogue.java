@@ -66,21 +66,25 @@ public class Rogue extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
-
+        this.backstabBonus = Constants.BACKSTAB_P_B;
+        this.paralysisBonus = Constants.PARALYSIS_P_B;
     }
 
     @Override
-    void interactWith(Knight P) {
-
+    void interactWith(Knight K) {
+        this.backstabBonus = Constants.BACKSTAB_K_B;
+        this.paralysisBonus = Constants.PARALYSIS_K_B;
     }
 
     @Override
-    void interactWith(Wizard B) {
-
+    void interactWith(Wizard W) {
+        this.backstabBonus = Constants.BACKSTAB_W_B;
+        this.paralysisBonus = Constants.PARALYSIS_W_B;
     }
 
     @Override
     void interactWith(Rogue R) {
-
+        this.backstabBonus = Constants.BACKSTAB_R_B;
+        this.paralysisBonus = Constants.PARALYSIS_R_B;
     }
 }

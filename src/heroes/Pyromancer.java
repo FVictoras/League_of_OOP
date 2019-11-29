@@ -58,21 +58,25 @@ public class Pyromancer extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
-
+        this.fireblastBonus = Constants.FIREBLAST_P_B;
+        this.igniteBonus = Constants.IGNITE_P_B;
     }
 
     @Override
-    void interactWith(Knight P) {
-
+    void interactWith(Knight K) {
+        this.fireblastBonus = Constants.FIREBLAST_K_B;
+        this.igniteBonus = Constants.IGNITE_K_B;
     }
 
     @Override
-    void interactWith(Wizard B) {
-
+    void interactWith(Wizard W) {
+        this.fireblastBonus = Constants.FIREBLAST_W_B;
+        this.igniteBonus = Constants.IGNITE_W_B;
     }
 
     @Override
     void interactWith(Rogue R) {
-
+        this.fireblastBonus = Constants.FIREBLAST_R_B;
+        this.igniteBonus = Constants.IGNITE_R_B;
     }
 }
