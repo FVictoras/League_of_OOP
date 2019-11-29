@@ -94,11 +94,11 @@ public abstract class Hero {
         this.health = health;
     }
 
-    public void receiveDamage (int damage) {
+    public void receiveDamage(int damage) {
         this.health = this.health - damage;
     }
 
-    public void receiveDamage (int damageFirstSkill, int damageSecondSkill) {
+    public void receiveDamage(int damageFirstSkill, int damageSecondSkill) {
         this.health = this.health - damageFirstSkill - damageSecondSkill;
         this.lastDamageReceived = new ArrayList<Integer>();
         this.lastDamageReceived.add(damageFirstSkill);

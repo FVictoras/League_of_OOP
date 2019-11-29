@@ -11,17 +11,15 @@ public class GameInput {
     private HashMap<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap;
 
     /**
-     *
-     * @param n nr_randuri
-     * @param m nr_coloane
-     * @param p nr_playeri
-     * @param r nr_runde
-     * @param map matricea hartii
+     * @param n              nr_randuri
+     * @param m              nr_coloane
+     * @param p              nr_playeri
+     * @param r              nr_runde
+     * @param map            matricea hartii
      * @param playerOnTheMap jucatorii + coordonatele lor
-     * @param playerMoves mutarile jucatorilor
+     * @param playerMoves    mutarile jucatorilor
      */
-    public GameInput(int n, int m, int p, int r, char[][] map, Map<Integer, HashMap<String,
-            ArrayList<Integer>>> playerOnTheMap, Map<Integer, ArrayList<Character>> playerMoves) {
+    public GameInput(int n, int m, int p, int r, char[][] map, Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap, Map<Integer, ArrayList<Character>> playerMoves) {
         N = n;
         M = m;
         nPlayers = p;
@@ -30,11 +28,11 @@ public class GameInput {
         this.playerOnTheMap = (HashMap<Integer, HashMap<String, ArrayList<Integer>>>) playerOnTheMap;
         this.playerMoves = (HashMap<Integer, ArrayList<Character>>) playerMoves;
     }
+
     /* Pentru testarea citirii */
     @Override
     public String toString() {
-        return "Este o mapa " + N + "x" + M + " participa: " + nPlayers + " sunt " + nRounds +
-                " runde" + "       " + "\n" + playerOnTheMap + "\n" + playerMoves;
+        return "Este o mapa " + N + "x" + M + " participa: " + nPlayers + " sunt " + nRounds + " runde" + "       " + "\n" + playerOnTheMap + "\n" + playerMoves;
     }
 
     public int getN() {

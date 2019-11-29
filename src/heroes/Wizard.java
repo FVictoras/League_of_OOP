@@ -23,7 +23,8 @@ public class Wizard extends Hero {
             bonusTile = Constants.DESERT_BONUS;
         }
         float percent =
-                Constants.DRAIN_BASE_PERCENT + (Constants.DRAIN_INCREASED_PERCENT * this.getLevel());
+                Constants.DRAIN_BASE_PERCENT + (Constants.DRAIN_INCREASED_PERCENT *
+                        this.getLevel());
         float baseHp = Math.min(Constants.DRAIN_BASE_CONSTANT * UtilsHero.getMaxHp(H),
                 H.getHealth());
         return Math.round(bonusTile * ((drainRaceBonus * percent) * baseHp));
@@ -34,8 +35,8 @@ public class Wizard extends Hero {
         if (desertBonus) {
             bonusTile = Constants.DESERT_BONUS;
         }
-        return Math.round(bonusTile * (deflectRaceBonus * (Math.min(Constants.DEFLECT_BASE_PERCENT +
-                        (Constants.DEFLECT_INCREASED_PERCENT * this.getLevel()),
+        return Math.round(bonusTile * (deflectRaceBonus * (Math.min(Constants.DEFLECT_BASE_PERCENT
+                + (Constants.DEFLECT_INCREASED_PERCENT * this.getLevel()),
                 Constants.DEFLECT_MAX_PERCENT) * dmgReceived)));
     }
 
@@ -47,8 +48,6 @@ public class Wizard extends Hero {
         H.interactWith(this);
     }
 
-//    public void calculateDmgReceived()
-
     @Override
     public void noLandBonus() {
         this.setDesertBonus(false);
@@ -56,22 +55,24 @@ public class Wizard extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
-        if (P.isAvailable()) P.interactWith(this);
+        if (P.isAvailable()) { P.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_P_B;
         this.deflectRaceBonus = Constants.DEFLECT_P_B;
-        int dmgReceived = Math.round(this.getLastDamageReceived().get(0) * (1/Constants.FIREBLAST_W_B)
-                + this.getLastDamageReceived().get(1) * (1/Constants.IGNITE_W_B));
+        int dmgReceived =
+                Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.FIREBLAST_W_B) +
+                        this.getLastDamageReceived().get(1) * (1 / Constants.IGNITE_W_B));
         P.receiveDamage(this.Drain(P) + this.Deflect(dmgReceived));
         this.setAvailable(false);
     }
 
     @Override
     void interactWith(Knight K) {
-        if (K.isAvailable()) K.interactWith(this);
+        if (K.isAvailable()) { K.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_K_B;
         this.deflectRaceBonus = Constants.DEFLECT_K_B;
-        int dmgReceived = Math.round(this.getLastDamageReceived().get(0) * (1/Constants.EXECUTE_W_B)
-                + this.getLastDamageReceived().get(1) * (1/Constants.SLAM_W_B));
+        int dmgReceived =
+                Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.EXECUTE_W_B) +
+                        this.getLastDamageReceived().get(1) * (1 / Constants.SLAM_W_B));
         K.receiveDamage(this.Drain(K) + this.Deflect(dmgReceived));
         this.setAvailable(false);
     }
@@ -81,17 +82,17 @@ public class Wizard extends Hero {
         this.setAvailable(false);
         this.drainRaceBonus = Constants.DRAIN_W_B;
         W.receiveDamage(this.Drain(W));
-        if (W.isAvailable()) W.interactWith(this);
+        if (W.isAvailable()) { W.interactWith(this); }
     }
 
     @Override
     void interactWith(Rogue R) {
-        if (R.isAvailable()) R.interactWith(this);
+        if (R.isAvailable()) { R.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_R_B;
         this.deflectRaceBonus = Constants.DEFLECT_R_B;
         int dmgReceived =
-                Math.round(this.getLastDamageReceived().get(0) * (1/Constants.BACKSTAB_W_B)
-                + this.getLastDamageReceived().get(1) * (1/Constants.PARALYSIS_W_B));
+                Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.BACKSTAB_W_B) +
+                        this.getLastDamageReceived().get(1) * (1 / Constants.PARALYSIS_W_B));
         R.receiveDamage(this.Drain(R) + this.Deflect(dmgReceived));
         this.setAvailable(false);
     }

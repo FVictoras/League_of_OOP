@@ -35,17 +35,17 @@ public final class Constants {
     public static final int SLAM_BASE_DMG = 100;
     public static final int SLAM_INCREASED_DMG = 40;
     // Drain
-    public static final float DRAIN_BASE_PERCENT = 20/100f;
-    public static final float DRAIN_INCREASED_PERCENT = 5/100f;
-    public static final float DRAIN_BASE_CONSTANT = 30/100f;
+    public static final float DRAIN_BASE_PERCENT = 20 / 100f;
+    public static final float DRAIN_INCREASED_PERCENT = 5 / 100f;
+    public static final float DRAIN_BASE_CONSTANT = 30 / 100f;
     // Deflect
-    public static final float DEFLECT_BASE_PERCENT = 35/100f;
-    public static final float DEFLECT_INCREASED_PERCENT  = 2/100f;
-    public static final float DEFLECT_MAX_PERCENT = 70/100f;
+    public static final float DEFLECT_BASE_PERCENT = 35 / 100f;
+    public static final float DEFLECT_INCREASED_PERCENT = 2 / 100f;
+    public static final float DEFLECT_MAX_PERCENT = 70 / 100f;
     // Backstab
     public static final int BACKSTAB_BASE_DMG = 200;
     public static final int BACKSTAB_INCREASED_DMG = 20;
-    public static final float BACKSTAB_CRITICAL_BONUS = 150/100f;
+    public static final float BACKSTAB_CRITICAL_BONUS = 150 / 100f;
     public static int BACKSTAB_CRITICAL_HITSNEEDED = 3;
     // Paralysis
     public static final int PARALYSIS_BASE_DMG = 40;
@@ -55,53 +55,53 @@ public final class Constants {
 
 
     // Tile bonuses
-    public static final float LAND_BONUS = 1 + (15/100f);
-    public static final float VOLCANIC_BONUS = 1 + (25/100f);
-    public static final float DESERT_BONUS = 1 + (10/100f);
-    public static final float WOODS_BONUS = 1 + (15/100f);
+    public static final float LAND_BONUS = 1 + (15 / 100f);
+    public static final float VOLCANIC_BONUS = 1 + (25 / 100f);
+    public static final float DESERT_BONUS = 1 + (10 / 100f);
+    public static final float WOODS_BONUS = 1 + (15 / 100f);
 
     // pyro bonus
-    public static final float FIREBLAST_R_B = 1 + (-20/100f);
-    public static final float FIREBLAST_K_B = 1 + (20/100f);
-    public static final float FIREBLAST_P_B = 1 + (10/100f);
-    public static final float FIREBLAST_W_B = 1 + (5/100f);
+    public static final float FIREBLAST_R_B = 1 + (-20 / 100f);
+    public static final float FIREBLAST_K_B = 1 + (20 / 100f);
+    public static final float FIREBLAST_P_B = 1 + (10 / 100f);
+    public static final float FIREBLAST_W_B = 1 + (5 / 100f);
 
-    public static final float IGNITE_R_B = 1 + (-20/100f);
-    public static final float IGNITE_K_B = 1 + (20/100f);
-    public static final float IGNITE_P_B = 1 + (-10/100f);
-    public static final float IGNITE_W_B = 1 + (5/100f);
+    public static final float IGNITE_R_B = 1 + (-20 / 100f);
+    public static final float IGNITE_K_B = 1 + (20 / 100f);
+    public static final float IGNITE_P_B = 1 + (-10 / 100f);
+    public static final float IGNITE_W_B = 1 + (5 / 100f);
 
     // knight bonus
-    public static final float EXECUTE_R_B = 1 + (15/100f);
+    public static final float EXECUTE_R_B = 1 + (15 / 100f);
     public static final float EXECUTE_K_B = 1;
-    public static final float EXECUTE_P_B = 1 + (10/100f);
-    public static final float EXECUTE_W_B = 1 + (-20/100f);
+    public static final float EXECUTE_P_B = 1 + (10 / 100f);
+    public static final float EXECUTE_W_B = 1 + (-20 / 100f);
 
-    public static final float SLAM_R_B = 1 + (-20/100f);
-    public static final float SLAM_K_B = 1 + (20/100f);
-    public static final float SLAM_P_B = 1 + (-10/100f);
-    public static final float SLAM_W_B = 1 + (5/100f);
+    public static final float SLAM_R_B = 1 + (-20 / 100f);
+    public static final float SLAM_K_B = 1 + (20 / 100f);
+    public static final float SLAM_P_B = 1 + (-10 / 100f);
+    public static final float SLAM_W_B = 1 + (5 / 100f);
 
     // wizard bonus
-    public static final float DRAIN_R_B = 1 + (-20/100f);
-    public static final float DRAIN_K_B = 1 + (20/100f);
-    public static final float DRAIN_P_B = 1 + (-10/100f);
-    public static final float DRAIN_W_B = 1 + (5/100f);
+    public static final float DRAIN_R_B = 1 + (-20 / 100f);
+    public static final float DRAIN_K_B = 1 + (20 / 100f);
+    public static final float DRAIN_P_B = 1 + (-10 / 100f);
+    public static final float DRAIN_W_B = 1 + (5 / 100f);
 
-    public static final float DEFLECT_R_B = 1 + (20/100f);
-    public static final float DEFLECT_K_B = 1 + (40/100f);
-    public static final float DEFLECT_P_B = 1 + (30/100f);
+    public static final float DEFLECT_R_B = 1 + (20 / 100f);
+    public static final float DEFLECT_K_B = 1 + (40 / 100f);
+    public static final float DEFLECT_P_B = 1 + (30 / 100f);
 
     //rogue bonus
-    public static final float BACKSTAB_R_B = 1 + (20/100f);
-    public static final float BACKSTAB_K_B = 1 + (-10/100f);
-    public static final float BACKSTAB_P_B = 1 + (25/100f);
-    public static final float BACKSTAB_W_B = 1 + (25/100f);
+    public static final float BACKSTAB_R_B = 1 + (20 / 100f);
+    public static final float BACKSTAB_K_B = 1 + (-10 / 100f);
+    public static final float BACKSTAB_P_B = 1 + (25 / 100f);
+    public static final float BACKSTAB_W_B = 1 + (25 / 100f);
 
-    public static final float PARALYSIS_R_B = 1 + (-10/100f);
-    public static final float PARALYSIS_K_B = 1 + (-20/100f);
-    public static final float PARALYSIS_P_B = 1 + (20/100f);
-    public static final float PARALYSIS_W_B = 1 + (25/100f);
+    public static final float PARALYSIS_R_B = 1 + (-10 / 100f);
+    public static final float PARALYSIS_K_B = 1 + (-20 / 100f);
+    public static final float PARALYSIS_P_B = 1 + (20 / 100f);
+    public static final float PARALYSIS_W_B = 1 + (25 / 100f);
 
 
     //String constants

@@ -27,7 +27,7 @@ public class Rogue extends Hero {
         }
         if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED && woodsBonus) {
             this.totalBackstabs = 0;
-            return Math.round(tileBonus *  (Constants.BACKSTAB_CRITICAL_BONUS * (backstabBonus *
+            return Math.round(tileBonus * (Constants.BACKSTAB_CRITICAL_BONUS * (backstabBonus *
                     (Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG *
                             this.getLevel())))));
         } else {
@@ -45,7 +45,7 @@ public class Rogue extends Hero {
             overtimeRounds = Constants.PARALYSIS_OVERTIME_BONUS_ROUNDS;
         }
         ArrayList<Integer> paralysis = new ArrayList<Integer>(3);
-        paralysis.add(Math.round(tileBonus * (paralysisBonus *(Constants.PARALYSIS_BASE_DMG +
+        paralysis.add(Math.round(tileBonus * (paralysisBonus * (Constants.PARALYSIS_BASE_DMG +
                 (Constants.PARALYSIS_INCREASED_DMG * this.getLevel())))));
         paralysis.add(overtimeRounds);
         H.setDamageOvertime(paralysis.get(0), paralysis.get(1));
@@ -72,7 +72,7 @@ public class Rogue extends Hero {
         this.backstabBonus = Constants.BACKSTAB_P_B;
         this.paralysisBonus = Constants.PARALYSIS_P_B;
         P.receiveDamage(this.Backstab() + this.Paralysis(P).get(0));
-        if (P.isAvailable()) P.interactWith(this);
+        if (P.isAvailable()) { P.interactWith(this); }
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Rogue extends Hero {
         this.backstabBonus = Constants.BACKSTAB_K_B;
         this.paralysisBonus = Constants.PARALYSIS_K_B;
         K.receiveDamage(this.Backstab() + this.Paralysis(K).get(0));
-        if (K.isAvailable()) K.interactWith(this);
+        if (K.isAvailable()) { K.interactWith(this); }
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Rogue extends Hero {
         this.backstabBonus = Constants.BACKSTAB_W_B;
         this.paralysisBonus = Constants.PARALYSIS_W_B;
         W.receiveDamage(this.Backstab(), this.Paralysis(W).get(0));
-        if (W.isAvailable()) W.interactWith(this);
+        if (W.isAvailable()) { W.interactWith(this); }
     }
 
     @Override
@@ -99,6 +99,6 @@ public class Rogue extends Hero {
         this.backstabBonus = Constants.BACKSTAB_R_B;
         this.paralysisBonus = Constants.PARALYSIS_R_B;
         R.receiveDamage(this.Backstab() + this.Paralysis(R).get(0));
-        if (R.isAvailable()) R.interactWith(this);
+        if (R.isAvailable()) { R.interactWith(this); }
     }
 }

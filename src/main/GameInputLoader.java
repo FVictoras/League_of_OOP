@@ -15,20 +15,19 @@ public class GameInputLoader {
         this.mInputPath = mInputPath;
         this.mOutputPath = mOutputPath;
     }
+
     /**
-    * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>
-    * Harta este intr-o matrice de charuri
-    * Mutarile care trebuiesc facute de jucatori sunt scrise ca
+     * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>
+     * Harta este intr-o matrice de charuri
+     * Mutarile care trebuiesc facute de jucatori sunt scrise ca
      */
     public GameInput load() {
         int N = 0;
         int M = 0;
         int P = 0;
         int R = 0;
-        Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap =  new HashMap<Integer,
-                HashMap<String, ArrayList<Integer>>>();
-        Map<Integer, ArrayList<Character>> playerMoves  = new HashMap<Integer,
-                ArrayList<Character>>();
+        Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap = new HashMap<Integer, HashMap<String, ArrayList<Integer>>>();
+        Map<Integer, ArrayList<Character>> playerMoves = new HashMap<Integer, ArrayList<Character>>();
         String playerType = null;
         char[][] gameMap = new char[0][];
         ArrayList<Integer> coordonates = new ArrayList<Integer>(2);
@@ -36,7 +35,7 @@ public class GameInputLoader {
             FileSystem file = new FileSystem(mInputPath, mOutputPath);
             N = file.nextInt();
             M = file.nextInt();
-            gameMap =  new char[N][M];
+            gameMap = new char[N][M];
             for (int i = 0; i < N; i++) {
                 String myString = file.nextWord();
                 for (int j = 0; j < M; j++) {
@@ -50,9 +49,9 @@ public class GameInputLoader {
                 coordonates.add(file.nextInt());
                 coordonates.add(file.nextInt());
                 String finalPlayerType = playerType;
-                playerOnTheMap.put(i,
-                        new HashMap<String, ArrayList<Integer>>() {{ put(finalPlayerType
-                        , new ArrayList<Integer>(coordonates)); }});
+                playerOnTheMap.put(i, new HashMap<String, ArrayList<Integer>>() {{
+                    put(finalPlayerType, new ArrayList<Integer>(coordonates));
+                }});
                 coordonates.clear();
             }
             ArrayList<Character> moves = new ArrayList<Character>();

@@ -22,7 +22,8 @@ public class Knight extends Hero {
         if (landBonus) {
             bonusTile = Constants.LAND_BONUS;
         }
-        float reqHp = (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY *
+        float reqHp =
+                (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY *
                         H.getLevel())) * UtilsHero.getMaxHp(H);
         if (H.getHealth() > reqHp) {
             return Math.round(bonusTile * (executeBonus * (Constants.EXECUTE_BASE_DMG +
@@ -61,8 +62,8 @@ public class Knight extends Hero {
         this.executeBonus = Constants.EXECUTE_P_B;
         this.slamBonus = Constants.SLAM_P_B;
         System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
-        P.receiveDamage(this.Execute(P)+this.Slam(P));
-        if (P.isAvailable()) P.interactWith(this);
+        P.receiveDamage(this.Execute(P) + this.Slam(P));
+        if (P.isAvailable()) { P.interactWith(this); }
 
     }
 
@@ -72,8 +73,8 @@ public class Knight extends Hero {
         this.executeBonus = Constants.EXECUTE_K_B;
         this.slamBonus = Constants.SLAM_K_B;
         System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
-        K.receiveDamage(this.Execute(K)+this.Slam(K));
-        if (K.isAvailable()) K.interactWith(this);
+        K.receiveDamage(this.Execute(K) + this.Slam(K));
+        if (K.isAvailable()) { K.interactWith(this); }
     }
 
     @Override
@@ -83,7 +84,7 @@ public class Knight extends Hero {
         this.slamBonus = Constants.SLAM_W_B;
         System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
         W.receiveDamage(this.Execute(W), this.Slam(W));
-        if (W.isAvailable()) W.interactWith(this);
+        if (W.isAvailable()) { W.interactWith(this); }
 
     }
 
@@ -93,8 +94,8 @@ public class Knight extends Hero {
         this.executeBonus = Constants.EXECUTE_R_B;
         this.slamBonus = Constants.SLAM_R_B;
         System.out.println(this.emote() + "exe:" + this.executeBonus + "slam" + this.slamBonus);
-        R.receiveDamage(this.Execute(R)+this.Slam(R));
-        if (R.isAvailable()) R.interactWith(this);
+        R.receiveDamage(this.Execute(R) + this.Slam(R));
+        if (R.isAvailable()) { R.interactWith(this); }
     }
 
 

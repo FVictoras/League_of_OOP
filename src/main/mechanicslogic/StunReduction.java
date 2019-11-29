@@ -6,7 +6,7 @@ public class StunReduction implements RoundStrategy {
     @Override
     public void doOperation(Hero H) {
         if (H.getStunned() > 0) {
-            H.setStunned(H.getStunned()-1);
+            H.setStunned(H.getStunned() - 1);
         }
     }
 

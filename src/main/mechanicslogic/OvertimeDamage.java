@@ -7,7 +7,7 @@ public class OvertimeDamage implements RoundStrategy {
     public void doOperation(Hero H) {
         if (H.getRoundsOvertime() > 0) {
             H.receiveDamage(H.getDamageOvertime());
-            H.setRoundsOvertime(H.getRoundsOvertime()-1);
+            H.setRoundsOvertime(H.getRoundsOvertime() - 1);
         }
     }
 

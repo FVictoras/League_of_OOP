@@ -25,6 +25,7 @@ public class GameMechanics {
         this.nRows = gameInput.getM();
     }
 
+    // TODO BIG TODO HERE . check github
 
 
 }
