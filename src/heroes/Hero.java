@@ -13,6 +13,22 @@ public abstract class Hero {
     private int roundsStunned;
     private ArrayList<Integer> lastDamageReceived;
 
+    public int getDamageOvertime() {
+        return damageOvertime;
+    }
+
+    public void setDamageOvertime(int damageOvertime) {
+        this.damageOvertime = damageOvertime;
+    }
+
+    public int getRoundsOvertime() {
+        return roundsOvertime;
+    }
+
+    public void setRoundsOvertime(int roundsOvertime) {
+        this.roundsOvertime = roundsOvertime;
+    }
+
     public ArrayList<Integer> getLastDamageReceived() {
         return lastDamageReceived;
     }
@@ -23,6 +39,18 @@ public abstract class Hero {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
     }
 
     private boolean available;
@@ -66,10 +94,11 @@ public abstract class Hero {
         this.health = health;
     }
 
-    void receiveDamage (int damage) {
+    public void receiveDamage (int damage) {
         this.health = this.health - damage;
     }
-    void receiveDamage (int damageFirstSkill, int damageSecondSkill) {
+
+    public void receiveDamage (int damageFirstSkill, int damageSecondSkill) {
         this.health = this.health - damageFirstSkill - damageSecondSkill;
         this.lastDamageReceived = new ArrayList<Integer>();
         this.lastDamageReceived.add(damageFirstSkill);

@@ -1,9 +1,9 @@
 package main;
 
+import common.Constants;
 import factories.PlayerFactory;
 import heroes.Hero;
-import heroes.Pyromancer;
-import heroes.tilebonuses.Context;
+import heroes.tilebonuses.ContextTile;
 
 import java.util.ArrayList;
 
@@ -35,13 +35,15 @@ public class Main {
             System.out.println(a.emote() + " " + a.getxCoordonate() + " " + a.getyCoordonate() +
                     "   am viata: " + a.getHealth() + "hp");
         }
-        Context context = new Context('W');
-        context.executeStrategy(myHeroes.get(0));
-        context.executeStrategy(myHeroes.get(1));
+        ContextTile contextTile = new ContextTile('W');
+        contextTile.executeStrategy(myHeroes.get(0));
+        contextTile.executeStrategy(myHeroes.get(1));
         myHeroes.get(0).accept(myHeroes.get(1));
         System.out.println("P " + myHeroes.get(0).getHealth() + " K" + myHeroes.get(1).getHealth());
 
 //        System.out.println(((Pyromancer) myHeroes.get(0)).Fireblast());
+        System.out.println(Math.max(0, (int)
+                Math.ceil((double)((250 - Constants.XP_BASE)+1)/Constants.XP_MULTIPLICATOR)));
     }
 
 

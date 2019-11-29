@@ -2,10 +2,10 @@ package heroes.tilebonuses;
 
 import heroes.Hero;
 
-public class Context {
+public class ContextTile {
     private TileBonusStrategy strategy;
 
-    public Context(char tile) {
+    public ContextTile(char tile) {
         if (tile == 'V') {
             this.strategy = new VolcanicModifier();
         }

@@ -2,6 +2,9 @@ package common;
 
 public final class Constants {
 
+    // XP constant
+    public static final int XP_BASE = 250;
+    public static final int XP_MULTIPLICATOR = 50;
     // Starting HP Zone
     public static final int STARTING_HP_PYRO = 500;
     public static final int STARTING_HP_KNIGHT = 900;
@@ -100,6 +103,11 @@ public final class Constants {
     public static final float PARALYSIS_P_B = 1 + (20/100f);
     public static final float PARALYSIS_W_B = 1 + (25/100f);
 
+
+    //String constants
+    public static final String DMG_OVERTIME = "damage overtime";
+    public static final String STUN_REDUCTION = "stun reduction";
+    public static final String XP_OPERATION = "xp operation";
 
 }
 
