@@ -8,25 +8,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class GameOutput {
-    public static void printGame(String output, ArrayList<Hero> heroes) throws IOException {
+final class GameOutput {
+    private GameOutput() {
+
+    }
+    static void printGame(final String output, final ArrayList<Hero> heroes) throws IOException {
         FileWriter fileWriter = new FileWriter(output);
         try {
-            for (Hero H : heroes) {
-                fileWriter.writeWord(H.emote());
+            for (Hero h : heroes) {
+                fileWriter.writeWord(h.emote());
                 fileWriter.writeWord(" ");
-                if (!UtilsHero.isAlive(H)) {
+                if (!UtilsHero.isAlive(h)) {
                     fileWriter.writeWord("dead");
                 } else {
-                    fileWriter.writeInt(H.getLevel());
+                    fileWriter.writeInt(h.getLevel());
                     fileWriter.writeWord(" ");
-                    fileWriter.writeInt(H.getXP());
+                    fileWriter.writeInt(h.getXp());
                     fileWriter.writeWord(" ");
-                    fileWriter.writeInt(H.getHealth());
+                    fileWriter.writeInt(h.getHealth());
                     fileWriter.writeWord(" ");
-                    fileWriter.writeInt(H.getxCoordonate());
+                    fileWriter.writeInt(h.getxCoordonate());
                     fileWriter.writeWord(" ");
-                    fileWriter.writeInt(H.getyCoordonate());
+                    fileWriter.writeInt(h.getyCoordonate());
                 }
             fileWriter.writeNewLine();
             }

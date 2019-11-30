@@ -1,7 +1,10 @@
 package factories;
 
-import heroes.*;
-
+import heroes.Hero;
+import heroes.Pyromancer;
+import heroes.Knight;
+import heroes.Wizard;
+import heroes.Rogue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,11 +17,11 @@ public class PlayerFactory {
      * Se primeste HashMapul cu jucatorii cititi. Acestia se initializeaza si se
      * returneaza un ArrayList cu obiectele instantiate.
      */
-    public PlayerFactory(HashMap<Integer, HashMap<String, ArrayList<Integer>>> map) {
+    public PlayerFactory(final HashMap<Integer, HashMap<String, ArrayList<Integer>>> map) {
         this.map = map;
     }
 
-    public ArrayList<Hero> allHeroes() {
+    public final ArrayList<Hero> allHeroes() {
         ArrayList<Hero> myHeroes = new ArrayList<Hero>();
         Set<Map.Entry<Integer, HashMap<String, ArrayList<Integer>>>> s1 = map.entrySet();
         for (Map.Entry<Integer, HashMap<String, ArrayList<Integer>>> it1 : s1) {
@@ -34,7 +37,7 @@ public class PlayerFactory {
     /**
      * Se creeaza instanta corespunzatoare fiecarui erou.
      */
-    private Hero createHero(String heroType, ArrayList<Integer> coordinates) {
+    private Hero createHero(final String heroType, final ArrayList<Integer> coordinates) {
         if (heroType == null) {
             return null;
         } else {

@@ -3,7 +3,7 @@ package main.mechanicslogic;
 import heroes.Hero;
 
 public interface RoundStrategy {
-    public void doOperation(Hero H);
+     void doOperation(Hero h);
 
-    public void doOperation(Hero H1, Hero H2);
+     void doOperation(Hero h1, Hero h2);
 }

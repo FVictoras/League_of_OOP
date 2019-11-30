@@ -5,7 +5,7 @@ import heroes.Hero;
 public class ContextTile {
     private TileBonusStrategy strategy;
 
-    public ContextTile(char tile) {
+    public ContextTile(final char tile) {
         if (tile == 'V') {
             this.strategy = new VolcanicModifier();
         }
@@ -20,7 +20,7 @@ public class ContextTile {
         }
     }
 
-    public void executeStrategy(Hero H) {
-        strategy.setPlayersStrategy(H);
+    public final void executeStrategy(final Hero h) {
+        strategy.setPlayersStrategy(h);
     }
 }

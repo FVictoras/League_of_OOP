@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameInputLoader {
+class GameInputLoader {
     private final String mInputPath;
 
-    public String getmOutputPath() {
+    String getmOutputPath() {
         return mOutputPath;
     }
 
@@ -22,15 +22,15 @@ public class GameInputLoader {
     }
 
     /**
-     * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>
+     * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>.
      * Harta este intr-o matrice de charuri
      * Mutarile care trebuiesc facute de jucatori sunt scrise ca
      */
     public GameInput load() {
-        int N = 0;
-        int M = 0;
-        int P = 0;
-        int R = 0;
+        int n = 0;
+        int m = 0;
+        int p = 0;
+        int r = 0;
         Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap = new HashMap<Integer,
                 HashMap<String, ArrayList<Integer>>>();
         Map<Integer, ArrayList<Character>> playerMoves = new HashMap<Integer,
@@ -40,17 +40,17 @@ public class GameInputLoader {
         ArrayList<Integer> coordonates = new ArrayList<Integer>(2);
         try {
             FileSystem file = new FileSystem(mInputPath, mOutputPath);
-            N = file.nextInt();
-            M = file.nextInt();
-            gameMap = new char[N][M];
-            for (int i = 0; i < N; i++) {
+            n = file.nextInt();
+            m = file.nextInt();
+            gameMap = new char[n][m];
+            for (int i = 0; i < n; i++) {
                 String myString = file.nextWord();
-                for (int j = 0; j < M; j++) {
+                for (int j = 0; j < m; j++) {
                     gameMap[i][j] = myString.charAt(j);
                 }
             }
-            P = file.nextInt();
-            for (int i = 0; i < P; i++) {
+            p = file.nextInt();
+            for (int i = 0; i < p; i++) {
                 playerType = file.nextWord();
                 coordonates.add(file.nextInt());
                 coordonates.add(file.nextInt());
@@ -61,10 +61,10 @@ public class GameInputLoader {
                 coordonates.clear();
             }
             ArrayList<Character> moves = new ArrayList<Character>();
-            R = file.nextInt();
-            for (int i = 0; i < R; i++) {
+            r = file.nextInt();
+            for (int i = 0; i < r; i++) {
                 String myString = file.nextWord();
-                for (int j = 0; j < P; j++) {
+                for (int j = 0; j < p; j++) {
                     moves.add(myString.charAt(j));
                 }
                 playerMoves.put(i, new ArrayList<Character>(moves));
@@ -75,7 +75,7 @@ public class GameInputLoader {
             e.printStackTrace();
         }
 
-        return new GameInput(N, M, P, R, gameMap, playerOnTheMap, playerMoves);
+        return new GameInput(n, m, p, r, gameMap, playerOnTheMap, playerMoves);
     }
 
 }

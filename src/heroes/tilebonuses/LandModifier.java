@@ -6,7 +6,7 @@ import heroes.Knight;
 public class LandModifier implements TileBonusStrategy {
 
     @Override
-    public void setPlayersStrategy(Hero h1) {
+    public final void setPlayersStrategy(final Hero h1) {
         if (h1 instanceof Knight) {
             ((Knight) h1).setLandBonus(true);
         } else {

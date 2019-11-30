@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Hero {
     private int health;
-    private int XP;
+    private int xp;
     private int level;
     private int xCoordonate;
     private int yCoordonate;
@@ -13,51 +13,47 @@ public abstract class Hero {
     private int roundsStunned;
     private ArrayList<Integer> lastDamageReceived;
 
-    public int getDamageOvertime() {
+    public final  int getDamageOvertime() {
         return damageOvertime;
     }
 
-    public void setDamageOvertime(int damageOvertime) {
-        this.damageOvertime = damageOvertime;
-    }
-
-    public int getRoundsOvertime() {
+    public final int getRoundsOvertime() {
         return roundsOvertime;
     }
 
-    public void setRoundsOvertime(int roundsOvertime) {
+    public final void setRoundsOvertime(final int roundsOvertime) {
         this.roundsOvertime = roundsOvertime;
     }
 
-    public ArrayList<Integer> getLastDamageReceived() {
+    final ArrayList<Integer> getLastDamageReceived() {
         return lastDamageReceived;
     }
 
-    public boolean isAvailable() {
+    final boolean isAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public final void setAvailable(final boolean available) {
         this.available = available;
     }
 
-    public int getXP() {
-        return XP;
+    public final int getXp() {
+        return xp;
     }
 
-    public void setLevel(int level) {
+    public final void setLevel(final int level) {
         this.level = level;
     }
 
-    public void setXP(int XP) {
-        this.XP = XP;
+    public final void setXp(final int xp) {
+        this.xp = xp;
     }
 
     private boolean available;
 
-    public Hero(int x, int y) {
+    public Hero(final int x, final int y) {
         this.level = 0;
-        this.XP = 0;
+        this.xp = 0;
         this.xCoordonate = x;
         this.yCoordonate = y;
         this.roundsStunned = 0;
@@ -66,73 +62,77 @@ public abstract class Hero {
         this.available = true;
     }
 
-    public int getHealth() {
+    public final int getHealth() {
         return health;
     }
 
-    public int getLevel() {
+    public final int getLevel() {
         return level;
     }
 
-    public int getxCoordonate() {
+    public final int getxCoordonate() {
         return xCoordonate;
     }
 
-    public int getyCoordonate() {
+    public final int getyCoordonate() {
         return yCoordonate;
     }
 
-    public void setxCoordonate(int xCoordonate) {
+    public final void setxCoordonate(final int xCoordonate) {
         this.xCoordonate = xCoordonate;
     }
 
-    public void setyCoordonate(int yCoordonate) {
+    public final void setyCoordonate(final int yCoordonate) {
         this.yCoordonate = yCoordonate;
     }
 
-    public int getStunned() {
+    public final int getStunned() {
         return roundsStunned;
     }
 
-    public void setStunned(int stunned) {
+    public final void setStunned(final int stunned) {
         this.roundsStunned = stunned;
     }
 
-    public void setHealth(int health) {
+    public final void setHealth(final int health) {
         this.health = health;
     }
 
-    public void receiveDamage(int damage) {
+    public final void receiveDamage(final int damage) {
         this.health = this.health - damage;
     }
 
-    public void receiveDamage(int damageFirstSkill, int damageSecondSkill) {
+    final void receiveDamage(final int damageFirstSkill, final int damageSecondSkill) {
         this.health = this.health - damageFirstSkill - damageSecondSkill;
         this.lastDamageReceived = new ArrayList<Integer>();
         this.lastDamageReceived.add(damageFirstSkill);
         this.lastDamageReceived.add(damageSecondSkill);
     }
 
-    void setDamageOvertime(int damageOvertime, int roundsOvertime) {
-        this.damageOvertime = damageOvertime;
-        this.roundsOvertime = roundsOvertime;
+    final void setDamageOvertime(final int overtime, final int rounds) {
+        this.damageOvertime = overtime;
+        this.roundsOvertime = rounds;
     }
 
+    /**
+     * Javadoc.
+     * @return
+     */
     public String emote() {
         return null;
     }
 
-    abstract public void noLandBonus();
+    public abstract void noLandBonus();
 
-    abstract public void accept(Hero H);
+    public abstract void accept(Hero h);
 
-    abstract void interactWith(Pyromancer P);
+    abstract void interactWith(Pyromancer p);
 
-    abstract void interactWith(Knight P);
+    abstract void interactWith(Knight k);
 
-    abstract void interactWith(Wizard B);
+    abstract void interactWith(Wizard w);
 
-    abstract void interactWith(Rogue R);
+    abstract void interactWith(Rogue r);
 
 
 }

@@ -6,7 +6,7 @@ import heroes.Wizard;
 public class DesertModifier implements TileBonusStrategy {
 
     @Override
-    public void setPlayersStrategy(Hero h1) {
+    public final void setPlayersStrategy(final Hero h1) {
         if (h1 instanceof Wizard) {
             ((Wizard) h1).setDesertBonus(true);
         } else {

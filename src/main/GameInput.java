@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameInput {
+class GameInput {
 
-    private int N, M, nPlayers, nRounds;
+    private int n, m, nPlayers, nRounds;
     private char[][] map;
     private HashMap<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap;
 
@@ -19,10 +19,11 @@ public class GameInput {
      * @param playerOnTheMap jucatorii + coordonatele lor
      * @param playerMoves    mutarile jucatorilor
      */
-    public GameInput(int n, int m, int p, int r, char[][] map, Map<Integer, HashMap<String,
-            ArrayList<Integer>>> playerOnTheMap, Map<Integer, ArrayList<Character>> playerMoves) {
-        N = n;
-        M = m;
+    GameInput(final int n, final int m, final int p, final int r, final char[][] map,
+              final Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap,
+              final Map<Integer, ArrayList<Character>> playerMoves) {
+        this.n = n;
+        this.m = m;
         nPlayers = p;
         nRounds = r;
         this.map = map;
@@ -31,31 +32,31 @@ public class GameInput {
         this.playerMoves = (HashMap<Integer, ArrayList<Character>>) playerMoves;
     }
 
-    public int getN() {
-        return N;
+    int getN() {
+        return n;
     }
 
-    public int getM() {
-        return M;
+    int getM() {
+        return m;
     }
 
-    public int getnPlayers() {
+    int getnPlayers() {
         return nPlayers;
     }
 
-    public int getnRounds() {
+    int getnRounds() {
         return nRounds;
     }
 
-    public char[][] getMap() {
+    char[][] getMap() {
         return map;
     }
 
-    public HashMap<Integer, HashMap<String, ArrayList<Integer>>> getPlayerOnTheMap() {
+    HashMap<Integer, HashMap<String, ArrayList<Integer>>> getPlayerOnTheMap() {
         return playerOnTheMap;
     }
 
-    public HashMap<Integer, ArrayList<Character>> getPlayerMoves() {
+    HashMap<Integer, ArrayList<Character>> getPlayerMoves() {
         return playerMoves;
     }
 

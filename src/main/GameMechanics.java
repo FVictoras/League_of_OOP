@@ -21,7 +21,7 @@ public class GameMechanics {
     private int nColumn;
     private int nRows;
 
-    public GameMechanics(GameInput gameInput, String outputPath) {
+    public GameMechanics(final GameInput gameInput, final String outputPath) {
         this.heroes = (new PlayerFactory(gameInput.getPlayerOnTheMap())).allHeroes();
         this.map = gameInput.getMap();
         this.moves = gameInput.getPlayerMoves();
@@ -32,24 +32,25 @@ public class GameMechanics {
         this.outputPath = outputPath;
     }
 
-    public void setAllAvailable() {
-        for (Hero H : heroes) {
-            H.setAvailable(true);
+    private void setAllAvailable() {
+        for (Hero h : heroes) {
+            h.setAvailable(true);
         }
     }
-
-    public void launchGame() throws IOException {
+    final void launchGame() throws IOException {
         for (int i = 0; i < numberOfRounds; i++) {
             this.setAllAvailable();
             ContextRound roundLogic = new ContextRound(Constants.DMG_OVERTIME);
-            for (Hero H : heroes) {
+            for (Hero h : heroes) {
                 // Aici se ia damageul overtime
-                roundLogic.doOperation(H);
+                roundLogic.doOperation(h);
                 // Se verifica daca e alive
-                if (UtilsHero.isAlive(H)) {
+                if (UtilsHero.isAlive(h)) {
                     // Se face miscarea
-                    if (H.getStunned() == 0) { this.doMovement(i, H); } else {
-                        H.setStunned(H.getStunned() - 1);
+                    if (h.getStunned() == 0) {
+                        this.doMovement(i, h);
+                    } else {
+                        h.setStunned(h.getStunned() - 1);
                     }
                 }
             }
@@ -59,71 +60,71 @@ public class GameMechanics {
         this.printScoreboard();
     }
 
-    public void doMovement(int currentRound, Hero H) {
-        int index = heroes.indexOf(H);
+    private void doMovement(final int currentRound, final Hero h) {
+        int index = heroes.indexOf(h);
         if (moves.get(currentRound).get(index) == 'U') {
-            H.setxCoordonate(H.getxCoordonate() - 1);
+            h.setxCoordonate(h.getxCoordonate() - 1);
         }
         if (moves.get(currentRound).get(index) == 'D') {
-            H.setxCoordonate(H.getxCoordonate() + 1);
+            h.setxCoordonate(h.getxCoordonate() + 1);
         }
         if (moves.get(currentRound).get(index) == 'R') {
-            H.setyCoordonate(H.getyCoordonate() + 1);
+            h.setyCoordonate(h.getyCoordonate() + 1);
         }
         if (moves.get(currentRound).get(index) == 'L') {
-            H.setyCoordonate(H.getyCoordonate() - 1);
+            h.setyCoordonate(h.getyCoordonate() - 1);
         }
     }
 
-    public void checkCollisions() {
+    private void checkCollisions() {
         int[][] traceMap = new int[nColumn][nRows];
         for (int i = 0; i < nColumn; i++) {
             for (int j = 0; j < nColumn; j++) {
                 traceMap[i][j] = -1;
             }
         }
-        for (Hero H : heroes) {
-            if (UtilsHero.isAlive(H)) {
-                int X = H.getxCoordonate();
-                int Y = H.getyCoordonate();
-                if (traceMap[X][Y] == -1) { traceMap[X][Y] = heroes.indexOf(H); } else {
-                    startAttack(H, heroes.get(traceMap[X][Y]), map[X][Y]);
+        for (Hero h : heroes) {
+            if (UtilsHero.isAlive(h)) {
+                int x = h.getxCoordonate();
+                int y = h.getyCoordonate();
+                if (traceMap[x][y] == -1) {
+                    traceMap[x][y] = heroes.indexOf(h);
+                } else {
+                    startAttack(h, heroes.get(traceMap[x][y]), map[x][y]);
                 }
             }
         }
     }
 
-    public void startAttack(Hero H1, Hero H2, char tile) {
+    private void startAttack(final Hero h1, final Hero h2, final char tile) {
         ContextTile tileBonus = new ContextTile(tile);
-        tileBonus.executeStrategy(H1);
-        tileBonus.executeStrategy(H2);
-        H1.accept(H2);
+        tileBonus.executeStrategy(h1);
+        tileBonus.executeStrategy(h2);
+        h1.accept(h2);
         ContextRound roundLogic = new ContextRound(Constants.XP_OPERATION);
-        if (UtilsHero.isAlive(H1) && !UtilsHero.isAlive(H2)) {
-            roundLogic.doOperation(H1, H2);
+        if (UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
+            roundLogic.doOperation(h1, h2);
         }
-        if (!UtilsHero.isAlive(H1) && UtilsHero.isAlive(H2)) {
-            roundLogic.doOperation(H2, H1);
+        if (!UtilsHero.isAlive(h1) && UtilsHero.isAlive(h2)) {
+            roundLogic.doOperation(h2, h1);
         }
-        if (!UtilsHero.isAlive(H1) && !UtilsHero.isAlive(H2)) {
-            int hardLevel = H1.getLevel();
-            roundLogic.doOperation(H1, H2);
-            int newHardLevel = H1.getLevel();
+        if (!UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
+            int hardLevel = h1.getLevel();
+            roundLogic.doOperation(h1, h2);
+            int newHardLevel = h1.getLevel();
             // Corner case cand amandoi se omoara si primul primeste xp, creste level, iar al doilea
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1
             // inainte de primirea xp-ului.
             if (newHardLevel > hardLevel) {
-                H1.setLevel(newHardLevel - (newHardLevel - hardLevel));
-                roundLogic.doOperation(H2, H1);
-                H1.setLevel(newHardLevel);
+                h1.setLevel(newHardLevel - (newHardLevel - hardLevel));
+                roundLogic.doOperation(h2, h1);
+                h1.setLevel(newHardLevel);
             }
         }
     }
 
-    public void printScoreboard() throws IOException {
+    private void printScoreboard() throws IOException {
         GameOutput.printGame(outputPath, heroes);
-        for (Hero H : heroes) {
-        }
     }
 
 

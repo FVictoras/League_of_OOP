@@ -8,90 +8,98 @@ public class Knight extends Hero {
     private float executeBonus = 1f;
     private float slamBonus = 1f;
 
-    public Knight(int x, int y) {
+    public Knight(final int x, final int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_KNIGHT);
     }
 
-    public String emote() {
+    public final String emote() {
         return "K";
     }
 
-    public int Execute(Hero H) {
+    private int execute(final Hero h) {
         float bonusTile = 1f;
         if (landBonus) {
             bonusTile = Constants.LAND_BONUS;
         }
         float reqHp =
-                (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY *
-                        H.getLevel())) * UtilsHero.getMaxHp(H);
-        if (H.getHealth() > reqHp) {
-            return Math.round(bonusTile * (executeBonus * (Constants.EXECUTE_BASE_DMG +
-                    Constants.EXECUTE_INCREASED_DMG * this.getLevel())));
+                (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY
+                        * h.getLevel())) * UtilsHero.getMaxHp(h);
+        if (h.getHealth() > reqHp) {
+            return Math.round(bonusTile * (executeBonus * (Constants.EXECUTE_BASE_DMG
+                    + Constants.EXECUTE_INCREASED_DMG * this.getLevel())));
         } else {
-            return H.getHealth();
+            return h.getHealth();
         }
     }
 
-    public int Slam(Hero H) {
-        H.setStunned(1);
+    private int slam(final Hero h) {
+        h.setStunned(1);
         float bonusTile = 1f;
         if (landBonus) {
             bonusTile = Constants.LAND_BONUS;
         }
-        return Math.round(bonusTile * (slamBonus * (Constants.SLAM_BASE_DMG +
-                Constants.SLAM_INCREASED_DMG * this.getLevel())));
+        return Math.round(bonusTile * (slamBonus * (Constants.SLAM_BASE_DMG
+                + Constants.SLAM_INCREASED_DMG * this.getLevel())));
     }
 
-    public void setLandBonus(boolean landBonus) {
+    public final void setLandBonus(final boolean landBonus) {
         this.landBonus = landBonus;
     }
 
-    public void accept(Hero H) {
-        H.interactWith(this);
+    public final void accept(final Hero h) {
+        h.interactWith(this);
     }
 
     @Override
-    public void noLandBonus() {
+    public final void noLandBonus() {
         this.setLandBonus(false);
     }
 
     @Override
-    void interactWith(Pyromancer P) {
+    final void interactWith(final Pyromancer p) {
         this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_P_B;
         this.slamBonus = Constants.SLAM_P_B;
-        P.receiveDamage(this.Execute(P) + this.Slam(P));
-        if (P.isAvailable()) { P.interactWith(this); }
+        p.receiveDamage(this.execute(p) + this.slam(p));
+        if (p.isAvailable()) {
+            p.interactWith(this);
+        }
 
     }
 
     @Override
-    void interactWith(Knight K) {
+    final void interactWith(final Knight k) {
         this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_K_B;
         this.slamBonus = Constants.SLAM_K_B;
-        K.receiveDamage(this.Execute(K) + this.Slam(K));
-        if (K.isAvailable()) { K.interactWith(this); }
+        k.receiveDamage(this.execute(k) + this.slam(k));
+        if (k.isAvailable()) {
+            k.interactWith(this);
+        }
     }
 
     @Override
-    void interactWith(Wizard W) {
+    final void interactWith(final Wizard w) {
         this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_W_B;
         this.slamBonus = Constants.SLAM_W_B;
-        W.receiveDamage(this.Execute(W), this.Slam(W));
-        if (W.isAvailable()) { W.interactWith(this); }
+        w.receiveDamage(this.execute(w), this.slam(w));
+        if (w.isAvailable()) {
+            w.interactWith(this);
+        }
 
     }
 
     @Override
-    void interactWith(Rogue R) {
+    final void interactWith(final Rogue r) {
         this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_R_B;
         this.slamBonus = Constants.SLAM_R_B;
-        R.receiveDamage(this.Execute(R) + this.Slam(R));
-        if (R.isAvailable()) { R.interactWith(this); }
+        r.receiveDamage(this.execute(r) + this.slam(r));
+        if (r.isAvailable()) {
+            r.interactWith(this);
+        }
     }
 
 

@@ -1,10 +1,14 @@
 package common;
 
 public final class Constants {
-
+    private Constants() {
+    }
     // XP constant
     public static final int XP_BASE = 250;
     public static final int XP_MULTIPLICATOR = 50;
+    public static final int XP_EARN_BASE = 200;
+    public static final int XP_EARN_LEVEL = 40;
+
     // Starting HP Zone
     public static final int STARTING_HP_PYRO = 500;
     public static final int STARTING_HP_KNIGHT = 900;
@@ -46,7 +50,7 @@ public final class Constants {
     public static final int BACKSTAB_BASE_DMG = 200;
     public static final int BACKSTAB_INCREASED_DMG = 20;
     public static final float BACKSTAB_CRITICAL_BONUS = 150 / 100f;
-    public static int BACKSTAB_CRITICAL_HITSNEEDED = 3;
+    public static final int BACKSTAB_CRITICAL_HITSNEEDED = 3;
     // Paralysis
     public static final int PARALYSIS_BASE_DMG = 40;
     public static final int PARALYSIS_INCREASED_DMG = 10;

@@ -1,25 +1,31 @@
 package heroes.utils;
 
 import common.Constants;
-import heroes.*;
+import heroes.Hero;
+import heroes.Pyromancer;
+import heroes.Knight;
+import heroes.Wizard;
+import heroes.Rogue;
 
-public class UtilsHero {
+public final class UtilsHero {
+    private UtilsHero() {
+    }
     /**
      * @return HP maxim pe care un erou il poate avea in functie de nivel si rasa
      */
-    public static int getMaxHp(Hero H) {
+    public static int getMaxHp(final Hero h) {
         try {
-            if (H instanceof Knight) {
-                return Constants.STARTING_HP_KNIGHT + H.getLevel() * Constants.INCREASE_HP_KNIGHT;
+            if (h instanceof Knight) {
+                return Constants.STARTING_HP_KNIGHT + h.getLevel() * Constants.INCREASE_HP_KNIGHT;
             }
-            if (H instanceof Pyromancer) {
-                return Constants.STARTING_HP_PYRO + H.getLevel() * Constants.INCREASE_HP_PYRO;
+            if (h instanceof Pyromancer) {
+                return Constants.STARTING_HP_PYRO + h.getLevel() * Constants.INCREASE_HP_PYRO;
             }
-            if (H instanceof Wizard) {
-                return Constants.STARTING_HP_WIZARD + H.getLevel() * Constants.INCREASE_HP_WIZARD;
+            if (h instanceof Wizard) {
+                return Constants.STARTING_HP_WIZARD + h.getLevel() * Constants.INCREASE_HP_WIZARD;
             }
-            if (H instanceof Rogue) {
-                return Constants.STARTING_HP_ROGUE + H.getLevel() * Constants.INCREASE_HP_ROGUE;
+            if (h instanceof Rogue) {
+                return Constants.STARTING_HP_ROGUE + h.getLevel() * Constants.INCREASE_HP_ROGUE;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -27,10 +33,7 @@ public class UtilsHero {
         return -1;
     }
 
-    public static boolean isAlive(Hero H) {
-        if (H.getHealth() <= 0) {
-            return false;
-        }
-        return true;
+    public static boolean isAlive(final Hero h) {
+        return h.getHealth() > 0;
     }
 }

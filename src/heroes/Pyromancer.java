@@ -9,85 +9,93 @@ public class Pyromancer extends Hero {
     private float fireblastBonus = 1f;
     private float igniteBonus = 1f;
 
-    public Pyromancer(int x, int y) {
+    public Pyromancer(final int x, final int y) {
         super(x, y);
         this.setHealth(Constants.STARTING_HP_PYRO);
     }
 
-    public String emote() {
+    public final String emote() {
         return "P";
     }
 
-    public int Fireblast() {
+    private int fireblast() {
         float tileBonus = 1f;
         if (volcanicBonus) {
             tileBonus = Constants.VOLCANIC_BONUS;
         }
-        return Math.round(tileBonus * (fireblastBonus * Constants.FIREBLAST_BASE_DMG +
-                this.getLevel() * Constants.FIREBLAST_INCREASED_DMG));
+        return Math.round(tileBonus * (fireblastBonus * Constants.FIREBLAST_BASE_DMG
+                + this.getLevel() * Constants.FIREBLAST_INCREASED_DMG));
     }
 
-    public ArrayList<Integer> Ignite(Hero H) {
-        ArrayList<Integer> igniteDamage = new ArrayList<Integer>(3);
+    private ArrayList<Integer> ignite(final Hero h) {
+        ArrayList<Integer> igniteDamage = new ArrayList<Integer>();
         float tileBonus = 1f;
         if (volcanicBonus) {
             tileBonus = Constants.VOLCANIC_BONUS;
         }
-        igniteDamage.add(Math.round(tileBonus * (igniteBonus * Constants.IGNITE_BASE_DMG +
-                this.getLevel() * Constants.IGNITE_INCREASED_DMG)));
-        igniteDamage.add((Math.round(tileBonus * (igniteBonus * Constants.IGNITE_BASE_OVERTIME +
-                this.getLevel() * Constants.IGNITE_INCREASED_OVERTIME))));
+        igniteDamage.add(Math.round(tileBonus * (igniteBonus * Constants.IGNITE_BASE_DMG
+                + this.getLevel() * Constants.IGNITE_INCREASED_DMG)));
+        igniteDamage.add((Math.round(tileBonus * (igniteBonus * Constants.IGNITE_BASE_OVERTIME
+                + this.getLevel() * Constants.IGNITE_INCREASED_OVERTIME))));
         igniteDamage.add(Constants.IGNITE_DURATION_OVERTIME);
-        H.setDamageOvertime(igniteDamage.get(1), igniteDamage.get(2));
+        h.setDamageOvertime(igniteDamage.get(1), igniteDamage.get(2));
         return igniteDamage;
     }
 
-    public void accept(Hero H) {
-        H.interactWith(this);
+    public final void accept(final Hero h) {
+        h.interactWith(this);
     }
 
-    public void setVolcanicBonus(boolean volcanicBonus) {
+    public final void setVolcanicBonus(final boolean volcanicBonus) {
         this.volcanicBonus = volcanicBonus;
     }
 
     @Override
-    public void noLandBonus() {
+    public final void noLandBonus() {
         this.setVolcanicBonus(false);
     }
 
     @Override
-    void interactWith(Pyromancer P) {
+    final void interactWith(final Pyromancer p) {
         this.setAvailable(false);
         this.fireblastBonus = Constants.FIREBLAST_P_B;
         this.igniteBonus = Constants.IGNITE_P_B;
-        P.receiveDamage(this.Fireblast() + this.Ignite(P).get(0));
-        if (P.isAvailable()) { P.interactWith(this); }
+        p.receiveDamage(this.fireblast() + this.ignite(p).get(0));
+        if (p.isAvailable()) {
+            p.interactWith(this);
+        }
     }
 
     @Override
-    void interactWith(Knight K) {
+    final void interactWith(final Knight k) {
         this.setAvailable(false);
         this.fireblastBonus = Constants.FIREBLAST_K_B;
         this.igniteBonus = Constants.IGNITE_K_B;
-        K.receiveDamage(this.Fireblast() + this.Ignite(K).get(0));
-        if (K.isAvailable()) { K.interactWith(this); }
+        k.receiveDamage(this.fireblast() + this.ignite(k).get(0));
+        if (k.isAvailable()) {
+            k.interactWith(this);
+        }
     }
 
     @Override
-    void interactWith(Wizard W) {
+    final void interactWith(final Wizard w) {
         this.setAvailable(false);
         this.fireblastBonus = Constants.FIREBLAST_W_B;
         this.igniteBonus = Constants.IGNITE_W_B;
-        W.receiveDamage(this.Fireblast(), this.Ignite(W).get(0));
-        if (W.isAvailable()) { W.interactWith(this); }
+        w.receiveDamage(this.fireblast(), this.ignite(w).get(0));
+        if (w.isAvailable()) {
+            w.interactWith(this);
+        }
     }
 
     @Override
-    void interactWith(Rogue R) {
+    final void interactWith(final Rogue r) {
         this.setAvailable(false);
         this.fireblastBonus = Constants.FIREBLAST_R_B;
         this.igniteBonus = Constants.IGNITE_R_B;
-        R.receiveDamage(this.Fireblast() + this.Ignite(R).get(0));
-        if (R.isAvailable()) { R.interactWith(this); }
+        r.receiveDamage(this.fireblast() + this.ignite(r).get(0));
+        if (r.isAvailable()) {
+            r.interactWith(this);
+        }
     }
 }

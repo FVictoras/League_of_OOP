@@ -3,16 +3,20 @@ package main.mechanicslogic;
 import heroes.Hero;
 
 public class OvertimeDamage implements RoundStrategy {
+    /**
+     * Javadoc.
+     * @param h
+     */
     @Override
-    public void doOperation(Hero H) {
-        if (H.getRoundsOvertime() > 0) {
-            H.receiveDamage(H.getDamageOvertime());
-            H.setRoundsOvertime(H.getRoundsOvertime() - 1);
+    public void doOperation(final Hero h) {
+        if (h.getRoundsOvertime() > 0) {
+            h.receiveDamage(h.getDamageOvertime());
+            h.setRoundsOvertime(h.getRoundsOvertime() - 1);
         }
     }
 
     @Override
-    public void doOperation(Hero H1, Hero H2) {
+    public void doOperation(final Hero h1, final Hero h2) {
 
     }
 }

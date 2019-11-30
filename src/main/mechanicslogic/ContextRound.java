@@ -6,7 +6,11 @@ import heroes.Hero;
 public class ContextRound {
     private RoundStrategy roundStrategy;
 
-    public ContextRound(String strategy) {
+    /**
+     * .
+     * @param strategy
+     */
+    public ContextRound(final String strategy) {
         if (strategy.compareTo(Constants.DMG_OVERTIME) == 0) {
             roundStrategy = new OvertimeDamage();
         }
@@ -18,12 +22,21 @@ public class ContextRound {
         }
     }
 
-    public void doOperation(Hero H) {
-        roundStrategy.doOperation(H);
+    /**
+     * .
+     * @param h
+     */
+    public void doOperation(final Hero h) {
+        roundStrategy.doOperation(h);
     }
 
-    public void doOperation(Hero H1, Hero H2) {
-        roundStrategy.doOperation(H1, H2);
+    /**
+     * .
+     * @param h1
+     * @param h2
+     */
+    public void doOperation(final Hero h1, final Hero h2) {
+        roundStrategy.doOperation(h1, h2);
     }
 
 }
