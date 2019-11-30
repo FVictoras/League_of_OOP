@@ -9,6 +9,11 @@ import java.util.Map;
 
 public class GameInputLoader {
     private final String mInputPath;
+
+    public String getmOutputPath() {
+        return mOutputPath;
+    }
+
     private final String mOutputPath;
 
     GameInputLoader(final String mInputPath, final String mOutputPath) {

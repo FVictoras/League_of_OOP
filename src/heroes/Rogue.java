@@ -1,6 +1,7 @@
 package heroes;
 
 import common.Constants;
+import main.mechanicslogic.ContextRound;
 
 import java.util.ArrayList;
 
@@ -17,16 +18,21 @@ public class Rogue extends Hero {
     }
 
     public String emote() {
-        return "Sunt un rogue";
+        return "R";
     }
 
     public int Backstab() {
         float tileBonus = 1f;
         if (woodsBonus) {
             tileBonus = Constants.WOODS_BONUS;
-        }
-        if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED && woodsBonus) {
+        } else {
             this.totalBackstabs = 0;
+        }
+        if ((this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED || this.totalBackstabs
+                == 0)  && woodsBonus) {
+            if (this.totalBackstabs == Constants.BACKSTAB_CRITICAL_HITSNEEDED)
+                this.totalBackstabs = 1;
+            else this.totalBackstabs++;
             return Math.round(tileBonus * (Constants.BACKSTAB_CRITICAL_BONUS * (backstabBonus *
                     (Constants.BACKSTAB_BASE_DMG + (Constants.BACKSTAB_INCREASED_DMG *
                             this.getLevel())))));
@@ -77,6 +83,7 @@ public class Rogue extends Hero {
 
     @Override
     void interactWith(Knight K) {
+        System.out.println(this.woodsBonus);
         this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_K_B;
         this.paralysisBonus = Constants.PARALYSIS_K_B;

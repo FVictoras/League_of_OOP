@@ -14,7 +14,7 @@ public class Wizard extends Hero {
     }
 
     public String emote() {
-        return "Sunt un wizard";
+        return "W";
     }
 
     public int Drain(Hero H) {

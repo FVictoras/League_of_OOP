@@ -15,7 +15,7 @@ public class Pyromancer extends Hero {
     }
 
     public String emote() {
-        return "Sunt un pyro";
+        return "P";
     }
 
     public int Fireblast() {

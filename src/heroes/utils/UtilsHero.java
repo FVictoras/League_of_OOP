@@ -26,4 +26,11 @@ public class UtilsHero {
         }
         return -1;
     }
+
+    public static boolean isAlive(Hero H) {
+        if (H.getHealth() <= 0) {
+            return false;
+        }
+        return true;
+    }
 }

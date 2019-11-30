@@ -82,6 +82,14 @@ public abstract class Hero {
         return yCoordonate;
     }
 
+    public void setxCoordonate(int xCoordonate) {
+        this.xCoordonate = xCoordonate;
+    }
+
+    public void setyCoordonate(int yCoordonate) {
+        this.yCoordonate = yCoordonate;
+    }
+
     public int getStunned() {
         return roundsStunned;
     }

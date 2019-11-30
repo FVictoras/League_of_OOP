@@ -1,6 +1,7 @@
 package main.mechanicslogic;
 
 import common.Constants;
+import heroes.Hero;
 
 public class ContextRound {
     private RoundStrategy roundStrategy;
@@ -16,4 +17,12 @@ public class ContextRound {
             roundStrategy = new XpOperation();
         }
     }
+
+    public void doOperation(Hero H) {
+        roundStrategy.doOperation(H);
+    }
+    public void doOperation(Hero H1, Hero H2) {
+        roundStrategy.doOperation(H1, H2);
+    }
+
 }
