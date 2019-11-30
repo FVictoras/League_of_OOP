@@ -83,7 +83,6 @@ public class Rogue extends Hero {
 
     @Override
     void interactWith(Knight K) {
-        System.out.println(this.woodsBonus);
         this.setAvailable(false);
         this.backstabBonus = Constants.BACKSTAB_K_B;
         this.paralysisBonus = Constants.PARALYSIS_K_B;

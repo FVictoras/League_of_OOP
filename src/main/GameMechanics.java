@@ -6,7 +6,6 @@ import heroes.Hero;
 import heroes.tilebonuses.ContextTile;
 import heroes.utils.UtilsHero;
 import main.mechanicslogic.ContextRound;
-import main.mechanicslogic.RoundStrategy;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,8 +33,7 @@ public class GameMechanics {
     }
 
     public void setAllAvailable() {
-        for (Hero H:
-             heroes) {
+        for (Hero H : heroes) {
             H.setAvailable(true);
         }
     }
@@ -44,17 +42,15 @@ public class GameMechanics {
         for (int i = 0; i < numberOfRounds; i++) {
             this.setAllAvailable();
             ContextRound roundLogic = new ContextRound(Constants.DMG_OVERTIME);
-            for (Hero H:
-                 heroes) {
+            for (Hero H : heroes) {
                 // Aici se ia damageul overtime
                 roundLogic.doOperation(H);
                 // Se verifica daca e alive
                 if (UtilsHero.isAlive(H)) {
                     // Se face miscarea
-                    if (H.getStunned()==0)
-                        this.doMovement(i, H);
-                    else
-                        H.setStunned(H.getStunned()-1);
+                    if (H.getStunned() == 0) { this.doMovement(i, H); } else {
+                        H.setStunned(H.getStunned() - 1);
+                    }
                 }
             }
             // Se verifica coliziuni
@@ -66,33 +62,31 @@ public class GameMechanics {
     public void doMovement(int currentRound, Hero H) {
         int index = heroes.indexOf(H);
         if (moves.get(currentRound).get(index) == 'U') {
-            H.setxCoordonate(H.getxCoordonate()-1);
+            H.setxCoordonate(H.getxCoordonate() - 1);
         }
         if (moves.get(currentRound).get(index) == 'D') {
-            H.setxCoordonate(H.getxCoordonate()+1);
+            H.setxCoordonate(H.getxCoordonate() + 1);
         }
         if (moves.get(currentRound).get(index) == 'R') {
-            H.setyCoordonate(H.getyCoordonate()+1);
+            H.setyCoordonate(H.getyCoordonate() + 1);
         }
         if (moves.get(currentRound).get(index) == 'L') {
-            H.setyCoordonate(H.getyCoordonate()-1);
+            H.setyCoordonate(H.getyCoordonate() - 1);
         }
     }
 
     public void checkCollisions() {
         int[][] traceMap = new int[nColumn][nRows];
-        for (int i = 0; i<nColumn; i++) {
-            for (int j = 0; j<nColumn; j++) {
-                traceMap[i][j]=-1;
+        for (int i = 0; i < nColumn; i++) {
+            for (int j = 0; j < nColumn; j++) {
+                traceMap[i][j] = -1;
             }
         }
-        for (Hero H:
-             heroes) {
+        for (Hero H : heroes) {
             if (UtilsHero.isAlive(H)) {
                 int X = H.getxCoordonate();
                 int Y = H.getyCoordonate();
-                if (traceMap[X][Y] == -1) traceMap[X][Y] = heroes.indexOf(H);
-                else {
+                if (traceMap[X][Y] == -1) { traceMap[X][Y] = heroes.indexOf(H); } else {
                     startAttack(H, heroes.get(traceMap[X][Y]), map[X][Y]);
                 }
             }
@@ -119,7 +113,7 @@ public class GameMechanics {
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1
             // inainte de primirea xp-ului.
             if (newHardLevel > hardLevel) {
-                H1.setLevel(newHardLevel - (newHardLevel-hardLevel));
+                H1.setLevel(newHardLevel - (newHardLevel - hardLevel));
                 roundLogic.doOperation(H2, H1);
                 H1.setLevel(newHardLevel);
             }
@@ -128,6 +122,8 @@ public class GameMechanics {
 
     public void printScoreboard() throws IOException {
         GameOutput.printGame(outputPath, heroes);
+        for (Hero H : heroes) {
+        }
     }
 
 

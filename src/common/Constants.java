@@ -64,7 +64,7 @@ public final class Constants {
     public static final float FIREBLAST_R_B = 1 + (-20 / 100f);
     public static final float FIREBLAST_K_B = 1 + (20 / 100f);
     public static final float FIREBLAST_P_B = 1 + (10 / 100f);
-    public static final float FIREBLAST_W_B = 1 + (5 / 100f);
+    public static final float FIREBLAST_W_B = 1 + (5 / 100);
 
     public static final float IGNITE_R_B = 1 + (-20 / 100f);
     public static final float IGNITE_K_B = 1 + (20 / 100f);

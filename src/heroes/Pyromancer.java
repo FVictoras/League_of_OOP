@@ -48,7 +48,6 @@ public class Pyromancer extends Hero {
 
     public void setVolcanicBonus(boolean volcanicBonus) {
         this.volcanicBonus = volcanicBonus;
-        System.out.println("pyro: mi-a fost setat " + volcanicBonus + " volcanicBonus");
     }
 
     @Override

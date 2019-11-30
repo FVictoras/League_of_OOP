@@ -31,8 +31,10 @@ public class GameInputLoader {
         int M = 0;
         int P = 0;
         int R = 0;
-        Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap = new HashMap<Integer, HashMap<String, ArrayList<Integer>>>();
-        Map<Integer, ArrayList<Character>> playerMoves = new HashMap<Integer, ArrayList<Character>>();
+        Map<Integer, HashMap<String, ArrayList<Integer>>> playerOnTheMap = new HashMap<Integer,
+                HashMap<String, ArrayList<Integer>>>();
+        Map<Integer, ArrayList<Character>> playerMoves = new HashMap<Integer,
+                ArrayList<Character>>();
         String playerType = null;
         char[][] gameMap = new char[0][];
         ArrayList<Integer> coordonates = new ArrayList<Integer>(2);
@@ -48,7 +50,6 @@ public class GameInputLoader {
                 }
             }
             P = file.nextInt();
-            System.out.println(P);
             for (int i = 0; i < P; i++) {
                 playerType = file.nextWord();
                 coordonates.add(file.nextInt());

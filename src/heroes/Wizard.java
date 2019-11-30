@@ -3,6 +3,8 @@ package heroes;
 import common.Constants;
 import heroes.utils.UtilsHero;
 
+import java.math.BigDecimal;
+
 public class Wizard extends Hero {
     boolean desertBonus = false;
     private float drainRaceBonus = 1f;
@@ -55,18 +57,19 @@ public class Wizard extends Hero {
 
     @Override
     void interactWith(Pyromancer P) {
+        this.setAvailable(false);
         if (P.isAvailable()) { P.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_P_B;
         this.deflectRaceBonus = Constants.DEFLECT_P_B;
         int dmgReceived =
-                Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.FIREBLAST_W_B) +
-                        this.getLastDamageReceived().get(1) * (1 / Constants.IGNITE_W_B));
+                Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.FIREBLAST_W_B)) +
+                        Math.round(this.getLastDamageReceived().get(1) * (1 / Constants.IGNITE_W_B));
         P.receiveDamage(this.Drain(P) + this.Deflect(dmgReceived));
-        this.setAvailable(false);
     }
 
     @Override
     void interactWith(Knight K) {
+        this.setAvailable(false);
         if (K.isAvailable()) { K.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_K_B;
         this.deflectRaceBonus = Constants.DEFLECT_K_B;
@@ -74,7 +77,6 @@ public class Wizard extends Hero {
                 Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.EXECUTE_W_B) +
                         this.getLastDamageReceived().get(1) * (1 / Constants.SLAM_W_B));
         K.receiveDamage(this.Drain(K) + this.Deflect(dmgReceived));
-        this.setAvailable(false);
     }
 
     @Override
@@ -87,6 +89,7 @@ public class Wizard extends Hero {
 
     @Override
     void interactWith(Rogue R) {
+        this.setAvailable(false);
         if (R.isAvailable()) { R.interactWith(this); }
         this.drainRaceBonus = Constants.DRAIN_R_B;
         this.deflectRaceBonus = Constants.DEFLECT_R_B;
@@ -94,6 +97,5 @@ public class Wizard extends Hero {
                 Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.BACKSTAB_W_B) +
                         this.getLastDamageReceived().get(1) * (1 / Constants.PARALYSIS_W_B));
         R.receiveDamage(this.Drain(R) + this.Deflect(dmgReceived));
-        this.setAvailable(false);
     }
 }

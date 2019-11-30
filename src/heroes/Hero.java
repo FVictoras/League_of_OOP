@@ -98,7 +98,7 @@ public abstract class Hero {
         this.roundsStunned = stunned;
     }
 
-    void setHealth(int health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 

@@ -21,6 +21,7 @@ public class ContextRound {
     public void doOperation(Hero H) {
         roundStrategy.doOperation(H);
     }
+
     public void doOperation(Hero H1, Hero H2) {
         roundStrategy.doOperation(H1, H2);
     }
