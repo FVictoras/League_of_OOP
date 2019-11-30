@@ -4,8 +4,8 @@ import heroes.Hero;
 
 public class StunReduction implements RoundStrategy {
     /**
-     *
-     * @param h
+     * Se decrementeaza timpul stunului.
+     * @param h eroul.
      */
     @Override
     public void doOperation(final Hero h) {

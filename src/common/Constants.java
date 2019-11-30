@@ -57,7 +57,6 @@ public final class Constants {
     public static final int PARALYSIS_OVERTIME_ROUNDS = 3;
     public static final int PARALYSIS_OVERTIME_BONUS_ROUNDS = 6;
 
-
     // Tile bonuses
     public static final float LAND_BONUS = 1 + (15 / 100f);
     public static final float VOLCANIC_BONUS = 1 + (25 / 100f);
@@ -107,17 +106,9 @@ public final class Constants {
     public static final float PARALYSIS_P_B = 1 + (20 / 100f);
     public static final float PARALYSIS_W_B = 1 + (25 / 100f);
 
-
     //String constants
     public static final String DMG_OVERTIME = "damage overtime";
     public static final String STUN_REDUCTION = "stun reduction";
     public static final String XP_OPERATION = "xp operation";
 
 }
-
-/**
- * IN CAZUL DMG DAT PRIN ABILITATI OVERTIME SE VA RETURNA UN ARRAY
- * array[0] - damageul in runda curenta (Daca exista)
- * array[1] - damageul overtime/runda
- * array[2] - durata overtime
- */

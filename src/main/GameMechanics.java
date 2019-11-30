@@ -11,22 +11,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GameMechanics {
+/*
+    Clasa indeplineste toata dinamicitatea jocului.
+    i) Eroii se seteaza available de lupta la inceputul fiecarei runde (se pot lupta o singura data
+    pe runda)
+    1) Eroii iau damageul corespunzator abilitatilor cu overtime din rundele trecute
+    ii) Se verifica daca supravietuiesc damageului overtime.
+    iii) Se verifica daca au stun. Daca au nu se efectueaza (2) si li se decrementeaza stunul.
+    2) Eroii se misca conform comenzii de la input.
+    3) Se verifica coliziunile de pe harta. In cazul unei coliziuni se declanseaza (4)
+    4) Eroii se ataca. Procedeu implementat prin double-dispatch (detalii in README). In urma atacu-
+    lui se verifica starea de viata a fiecaruia si sunt date punctele XP, aferent si levelup + viata
+    5) La finalul tuturor rundelor se apeleaza functia de printare.
+ */
+
+class GameMechanics {
     private String outputPath;
     private ArrayList<Hero> heroes;
     private char[][] map;
     private HashMap<Integer, ArrayList<Character>> moves;
     private int numberOfRounds;
-    private int numberOfPlayers;
     private int nColumn;
     private int nRows;
 
-    public GameMechanics(final GameInput gameInput, final String outputPath) {
+    GameMechanics(final GameInput gameInput, final String outputPath) {
         this.heroes = (new PlayerFactory(gameInput.getPlayerOnTheMap())).allHeroes();
         this.map = gameInput.getMap();
         this.moves = gameInput.getPlayerMoves();
         this.numberOfRounds = gameInput.getnRounds();
-        this.numberOfPlayers = gameInput.getnPlayers();
         this.nColumn = gameInput.getN();
         this.nRows = gameInput.getM();
         this.outputPath = outputPath;
@@ -59,7 +71,6 @@ public class GameMechanics {
         }
         this.printScoreboard();
     }
-
     private void doMovement(final int currentRound, final Hero h) {
         int index = heroes.indexOf(h);
         if (moves.get(currentRound).get(index) == 'U') {

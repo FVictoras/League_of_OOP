@@ -14,6 +14,7 @@ final class GameOutput {
     }
     static void printGame(final String output, final ArrayList<Hero> heroes) throws IOException {
         FileWriter fileWriter = new FileWriter(output);
+        // Se scrie in fisierul de output.
         try {
             for (Hero h : heroes) {
                 fileWriter.writeWord(h.emote());

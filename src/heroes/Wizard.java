@@ -3,6 +3,11 @@ package heroes;
 import common.Constants;
 import heroes.utils.UtilsHero;
 
+/*
+    Fiecare clasa care implementeaza un copil al clasei Hero are specific:
+    Abilitatile, bonusurile aferente abilitatii, bonusul aferent tile-ului
+    Interactiunile sunt overrideuite in concordanta cu logica jocului.
+ */
 
 public class Wizard extends Hero {
     private boolean desertBonus = false;

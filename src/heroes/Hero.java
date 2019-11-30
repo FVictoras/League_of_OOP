@@ -2,15 +2,22 @@ package heroes;
 
 import java.util.ArrayList;
 
+/*
+    Fiecare erou este implimentat mostenind clasa Hero. Aici sunt datele comune fiecarui erou,
+    viata, xp, nivel, coordonate, damage-ul abilitatilor cu overtime, incapacitatea de miscare.
+    Pentru a facilita implementarea unor abilitati vom stoca si cel mai recent damage primit.
+    Cum la compilare stim ca eroii sunt Hero, dar nu stim exact ce copii ai lui Hero, abordam
+    problema interactiunii dintre eroi la RUNTIME, atunci cand prin double-dispatch acestia vor
+    interactiona corect.
+    Double dispatch implementarea este printr-o functie de accept overriduita de fiecare copil si
+    alte numarClaseCopil de functii InteractWith overwriteuite si overrideuita fiecare in clasa
+    copil,
+    Majoritatea metodelor sunt getter si setteri.
+ */
+
 public abstract class Hero {
-    private int health;
-    private int xp;
-    private int level;
-    private int xCoordonate;
-    private int yCoordonate;
-    private int damageOvertime;
-    private int roundsOvertime;
-    private int roundsStunned;
+    private int health, xp, level, xCoordonate, yCoordonate, damageOvertime, roundsOvertime,
+            roundsStunned;
     private ArrayList<Integer> lastDamageReceived;
 
     public final  int getDamageOvertime() {
@@ -115,8 +122,8 @@ public abstract class Hero {
     }
 
     /**
-     * Javadoc.
-     * @return
+     * Returneaza tipul de erou.
+     * @return tipul de erou.
      */
     public String emote() {
         return null;

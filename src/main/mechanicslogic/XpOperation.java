@@ -11,9 +11,9 @@ public class XpOperation implements RoundStrategy {
     }
 
     /**
-     * Javadoc.
-     * @param h1
-     * @param h2
+     * Se ofera XP eroului castigator.
+     * @param h1 erou invingator
+     * @param h2 erou infrant
      */
     @Override
     public void doOperation(final Hero h1, final Hero h2) {

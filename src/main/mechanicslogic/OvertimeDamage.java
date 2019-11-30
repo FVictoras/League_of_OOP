@@ -4,8 +4,8 @@ import heroes.Hero;
 
 public class OvertimeDamage implements RoundStrategy {
     /**
-     * Javadoc.
-     * @param h
+     * Se incaseaza damageul avut ca overtime.
+     * @param h eroul
      */
     @Override
     public void doOperation(final Hero h) {

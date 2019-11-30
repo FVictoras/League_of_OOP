@@ -33,6 +33,11 @@ public final class UtilsHero {
         return -1;
     }
 
+    /**
+     * Verifica daca eroul este sau nu in viata.
+     * @param h eroul dat spre verificare
+     * @return starea vietii eroului
+     */
     public static boolean isAlive(final Hero h) {
         return h.getHealth() > 0;
     }

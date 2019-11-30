@@ -3,7 +3,11 @@ package heroes;
 import common.Constants;
 
 import java.util.ArrayList;
-
+/*
+    Fiecare clasa care implementeaza un copil al clasei Hero are specific:
+    Abilitatile, bonusurile aferente abilitatii, bonusul aferent tile-ului
+    Interactiunile sunt overrideuite in concordanta cu logica jocului.
+ */
 public class Rogue extends Hero {
     private boolean woodsBonus = false;
     private float backstabBonus = 0;

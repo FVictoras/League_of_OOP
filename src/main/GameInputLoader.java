@@ -24,9 +24,9 @@ class GameInputLoader {
     /**
      * Fac citirea, stochez Eroii intr-un Hashmap<Index , Hashmap<Tip_Erou, Coordonate>>.
      * Harta este intr-o matrice de charuri
-     * Mutarile care trebuiesc facute de jucatori sunt scrise ca
+     * Mutarile care trebuiesc facute de jucatori sunt scrise ca Hashmap <Runda, Arraylist<mutari>>
      */
-    public GameInput load() {
+    GameInput load() {
         int n = 0;
         int m = 0;
         int p = 0;

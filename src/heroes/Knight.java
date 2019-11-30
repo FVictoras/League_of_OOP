@@ -3,6 +3,12 @@ package heroes;
 import common.Constants;
 import heroes.utils.UtilsHero;
 
+/*
+    Fiecare clasa care implementeaza un copil al clasei Hero are specific:
+    Abilitatile, bonusurile aferente abilitatii, bonusul aferent tile-ului
+    Interactiunile sunt overrideuite in concordanta cu logica jocului.
+ */
+
 public class Knight extends Hero {
     private boolean landBonus = false;
     private float executeBonus = 1f;
@@ -46,11 +52,9 @@ public class Knight extends Hero {
     public final void setLandBonus(final boolean landBonus) {
         this.landBonus = landBonus;
     }
-
     public final void accept(final Hero h) {
         h.interactWith(this);
     }
-
     @Override
     public final void noLandBonus() {
         this.setLandBonus(false);
