@@ -25,6 +25,7 @@ public final class Main {
         System.out.println(angels.get(0));
         ArrayList<AngelVisitor> angelsVisitors = new ArrayList<AngelVisitor>();
         angelsVisitors.add(new DamageAngel(1,4));
+        // un test
         System.out.println(angelsVisitors.get(0));
         Hero salut = new Rogue(1,2);
         angelsVisitors.get(0).visit(salut);
