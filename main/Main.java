@@ -20,7 +20,6 @@ public final class Main {
         GameInput gameInput = loader.load();
         GameMechanics m = new GameMechanics(gameInput, loader.getmOutputPath());
         m.launchGame();
-//aaaaa
         ArrayList<Angel> angels = new ArrayList<Angel>();
         angels.add(new DamageAngel(1,2));
         System.out.println(angels.get(0));
