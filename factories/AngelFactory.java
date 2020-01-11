@@ -8,38 +8,41 @@ import java.util.logging.Level;
 
 public class AngelFactory {
 
-    private ArrayList<ArrayList<Angel>> myAngels2 = new ArrayList<ArrayList<Angel>>(5);
+    public static ArrayList<ArrayList<Angel>> myAngels = new ArrayList<ArrayList<Angel>>(15);
 
     public AngelFactory(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels) {
         this.setMyAngels(angels);
     }
 
     public final ArrayList<ArrayList<Angel>> getMyAngels() {
-        return myAngels2;
+        return myAngels;
     }
 
     public void setMyAngels(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels) {
         ArrayList<Angel> arrAngels = new ArrayList<Angel>();
-        ArrayList<ArrayList<Angel>> myAngels = new ArrayList<ArrayList<Angel>>(10);
+        Angel nullAngel = new NonAngel(-1, -1);
+        ArrayList<Angel> nullClone = new ArrayList<Angel>();
+        nullClone.add(nullAngel);
         for (int i = 0; i < angels.size(); i++) {
             if (angels.get(i) == null) {
-                myAngels.add(0, null);
+                myAngels.add(nullClone);
             } else {
                 Set<Map.Entry<Integer, HashMap<String, ArrayList<Integer>>>> s1 = angels.get(i).entrySet();
                 for (Map.Entry<Integer, HashMap<String, ArrayList<Integer>>> it1 : s1) {
                     HashMap<String, ArrayList<Integer>> miniAngels = it1.getValue();
                     Set<Map.Entry<String, ArrayList<Integer>>> s2 = miniAngels.entrySet();
                     for (Map.Entry<String, ArrayList<Integer>> it2 : s2) {
-                        System.out.println(it2.getKey() + it2.getValue());
+//                        System.out.println(it2.getKey() + it2.getValue());
                         arrAngels.add(this.createAngel(it2.getKey(), it2.getValue()));
                     }
                 }
+                ArrayList<Angel> clone = (ArrayList<Angel>) arrAngels.clone();
+                myAngels.add(clone);
             }
-            ArrayList<Angel> clone = (ArrayList<Angel>) arrAngels.clone();
-            myAngels.add(clone);
             arrAngels.clear();
         }
         System.out.println(myAngels);
+        System.out.println("lala"+myAngels.get(0).get(0));
     }
 
     public final Angel createAngel(String type, ArrayList<Integer> coord) {
@@ -69,6 +72,9 @@ public class AngelFactory {
         }
         if (type.equals("TheDoomer")) {
             return new TheDoomer(coord.get(0), coord.get(1));
+        }
+        if (type.equals("XPAngel")) {
+            return new XPAngel( coord.get(0), coord.get(1));
         }
         return null;
     }

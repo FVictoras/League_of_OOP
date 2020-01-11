@@ -13,6 +13,7 @@ public class Knight extends Hero {
     private boolean landBonus = false;
     private float executeBonus = 1f;
     private float slamBonus = 1f;
+    private float damageModifier = 0f;
 
     public Knight(final int x, final int y) {
         super(x, y);
@@ -21,6 +22,10 @@ public class Knight extends Hero {
 
     public final String emote() {
         return "K";
+    }
+
+    public final void increaseDamageModifier(float val) {
+        this.damageModifier = this.damageModifier + val;
     }
 
     private int execute(final Hero h) {

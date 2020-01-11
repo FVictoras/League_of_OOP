@@ -10,7 +10,7 @@ public class TheDoomer extends Angel implements AngelVisitor {
 
     @Override
     public void visit(Hero h) {
-
+        h.setHealth(-1);
     }
 
 }

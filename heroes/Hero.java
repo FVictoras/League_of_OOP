@@ -125,6 +125,9 @@ public abstract class Hero {
      * Returneaza tipul de erou.
      * @return tipul de erou.
      */
+
+    public abstract void increaseDamageModifier(float val);
+
     public String emote() {
         return null;
     }

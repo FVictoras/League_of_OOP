@@ -13,6 +13,7 @@ public class Pyromancer extends Hero {
     private boolean volcanicBonus = false;
     private float fireblastBonus = 1f;
     private float igniteBonus = 1f;
+    private float damageModifier = 0f;
 
     public Pyromancer(final int x, final int y) {
         super(x, y);
@@ -21,6 +22,10 @@ public class Pyromancer extends Hero {
 
     public final String emote() {
         return "P";
+    }
+
+    public final void increaseDamageModifier(float val) {
+        this.damageModifier = this.damageModifier + val;
     }
 
     private int fireblast() {

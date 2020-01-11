@@ -12,8 +12,8 @@ public class Rogue extends Hero {
     private boolean woodsBonus = false;
     private float backstabBonus = 0;
     private float paralysisBonus = 0;
-
     private int totalBackstabs = 0;
+    private float damageModifier = 0f;
 
     public Rogue(final int x, final int y) {
         super(x, y);
@@ -23,6 +23,12 @@ public class Rogue extends Hero {
     public final String emote() {
         return "R";
     }
+
+
+    public final void increaseDamageModifier(float val) {
+        this.damageModifier = this.damageModifier + val;
+    }
+
 
     private int backstab() {
         float tileBonus = 1f;

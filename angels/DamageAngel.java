@@ -1,6 +1,7 @@
 package angels;
 
 import heroes.*;
+import heroes.utils.UtilsHero;
 
 public class DamageAngel extends Angel implements AngelVisitor  {
 
@@ -15,10 +16,12 @@ public class DamageAngel extends Angel implements AngelVisitor  {
 
     @Override
     public void visit(Hero h) {
-        if (h instanceof Rogue)
-            System.out.println("Bau rogule");
-        if (h instanceof Wizard)
-            System.out.println("Bau wizard");
+        if (UtilsHero.isAlive(h)) {
+            if (h instanceof Knight) h.increaseDamageModifier(0.15f);
+            if (h instanceof Pyromancer) h.increaseDamageModifier(0.20f);
+            if (h instanceof Rogue) h.increaseDamageModifier(0.30f);
+            if (h instanceof Wizard) h.increaseDamageModifier(0.40f);
+        }
     }
 
 }

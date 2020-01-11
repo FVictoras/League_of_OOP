@@ -3,9 +3,9 @@ package angels;
 import heroes.*;
 import heroes.utils.UtilsHero;
 
-public class LifeGiver extends Angel implements AngelVisitor {
+public class XPAngel extends Angel implements AngelVisitor {
 
-    public LifeGiver(int xCoordonate, int yCoordonate) {
+    public XPAngel(int xCoordonate, int yCoordonate) {
         super(xCoordonate, yCoordonate);
     }
 
@@ -13,16 +13,17 @@ public class LifeGiver extends Angel implements AngelVisitor {
     public void visit(Hero h) {
         if (UtilsHero.isAlive(h)) {
             if (h instanceof Knight) {
-                h.setHealth(h.getHealth()+100);
+                h.setXp(h.getXp()+45);
             }
             if (h instanceof Pyromancer) {
-                h.setHealth(h.getHealth()+80);
+                h.setXp(h.getXp()+50);
             }
             if (h instanceof Rogue) {
-                h.setHealth(h.getHealth()+90);
+                h.setXp(h.getXp()+40);
             }
             if (h instanceof Wizard) {
-                h.setHealth(h.getHealth()+120);
+                h.setXp(h.getXp()+60);
+
             }
         }
     }

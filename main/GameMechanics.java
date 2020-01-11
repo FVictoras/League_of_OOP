@@ -1,6 +1,8 @@
 package main;
 
+import angels.Angel;
 import common.Constants;
+import factories.AngelFactory;
 import factories.PlayerFactory;
 import heroes.Hero;
 import heroes.tilebonuses.ContextTile;
@@ -33,6 +35,7 @@ class GameMechanics {
     private int numberOfRounds;
     private int nColumn;
     private int nRows;
+    private ArrayList<ArrayList<Angel>> myAngels;
 
     GameMechanics(final GameInput gameInput, final String outputPath) {
         this.heroes = (new PlayerFactory(gameInput.getPlayerOnTheMap())).allHeroes();
@@ -42,6 +45,7 @@ class GameMechanics {
         this.nColumn = gameInput.getN();
         this.nRows = gameInput.getM();
         this.outputPath = outputPath;
+        this.myAngels = new ArrayList<ArrayList<Angel>>(AngelFactory.myAngels);
     }
 
     private void setAllAvailable() {
@@ -59,7 +63,7 @@ class GameMechanics {
                 // Se verifica daca e alive
                 if (UtilsHero.isAlive(h)) {
                     // Se face miscarea
-                    if (h.getStunned() == 0) {
+                    if (h.getStunned() == 0 && UtilsHero.isAlive(h)) {
                         this.doMovement(i, h);
                     } else {
                         h.setStunned(h.getStunned() - 1);
@@ -68,9 +72,36 @@ class GameMechanics {
             }
             // Se verifica coliziuni
             this.checkCollisions();
+            this.AngelVisit(i);
         }
         this.printScoreboard();
     }
+
+    private void AngelVisit(int round) {
+        ArrayList<Angel> myRoundAngels = new ArrayList<Angel>(myAngels.get(round));
+        ArrayList<Hero> heroesToBeVisited = new ArrayList<Hero>();
+        for (Angel angel: myRoundAngels
+             ) {
+            if (angel.getxCoordonate()!=-1) {
+                heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(), angel.getyCoordonate()));
+                for (Hero h : heroesToBeVisited) {
+                    angel.visit(h);
+                }
+                heroesToBeVisited.clear();
+            }
+        }
+    }
+
+    private ArrayList<Hero> collisions(int x, int y) {
+        ArrayList<Hero> returnHero = new ArrayList<Hero>();
+        for (Hero h: heroes) {
+            if (h.getxCoordonate() == x && h.getyCoordonate()==y) {
+                returnHero.add(h);
+            }
+        }
+        return returnHero;
+    }
+
     private void doMovement(final int currentRound, final Hero h) {
         int index = heroes.indexOf(h);
         if (moves.get(currentRound).get(index) == 'U') {

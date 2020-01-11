@@ -13,6 +13,7 @@ public class Wizard extends Hero {
     private boolean desertBonus = false;
     private float drainRaceBonus = 1f;
     private float deflectRaceBonus = 1f;
+    private float damageModifier = 0f;
 
     public Wizard(final int x, final int y) {
         super(x, y);
@@ -23,6 +24,9 @@ public class Wizard extends Hero {
         return "W";
     }
 
+    public final void increaseDamageModifier(float val) {
+        this.damageModifier = this.damageModifier + val;
+    }
     private int drain(final Hero h) {
         float bonusTile = 1f;
         if (desertBonus) {

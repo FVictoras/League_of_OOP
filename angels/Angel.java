@@ -1,8 +1,18 @@
 package angels;
 
-public class Angel {
+import heroes.Hero;
+
+public class Angel implements AngelVisitor{
     int xCoordonate;
-     int yCoordonate;
+    int yCoordonate;
+
+    public int getxCoordonate() {
+        return xCoordonate;
+    }
+
+    public int getyCoordonate() {
+        return yCoordonate;
+    }
 
     public Angel(int xCoordonate, int yCoordonate) {
         this.xCoordonate = xCoordonate;
@@ -13,4 +23,7 @@ public class Angel {
     public String toString() {
         return "Sunt un inger";
     }
+
+    @Override
+    public void visit(Hero H) {}
 }
