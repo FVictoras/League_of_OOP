@@ -69,8 +69,8 @@ public class Wizard extends Hero {
         if (p.isAvailable()) {
             p.interactWith(this);
         }
-        this.drainRaceBonus = Constants.DRAIN_P_B;
-        this.deflectRaceBonus = Constants.DEFLECT_P_B;
+        this.drainRaceBonus = Constants.DRAIN_P_B + this.damageModifier;
+        this.deflectRaceBonus = Constants.DEFLECT_P_B + this.damageModifier;
         int dmgReceived =
                 Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.FIREBLAST_W_B))
                         + Math.round(this.getLastDamageReceived().get(1)
@@ -84,8 +84,8 @@ public class Wizard extends Hero {
         if (k.isAvailable()) {
             k.interactWith(this);
         }
-        this.drainRaceBonus = Constants.DRAIN_K_B;
-        this.deflectRaceBonus = Constants.DEFLECT_K_B;
+        this.drainRaceBonus = Constants.DRAIN_K_B + this.damageModifier;
+        this.deflectRaceBonus = Constants.DEFLECT_K_B + this.damageModifier;
         int dmgReceived =
                 Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.EXECUTE_W_B)
                         + this.getLastDamageReceived().get(1) * (1 / Constants.SLAM_W_B));
@@ -95,7 +95,7 @@ public class Wizard extends Hero {
     @Override
     final void interactWith(final Wizard w) {
         this.setAvailable(false);
-        this.drainRaceBonus = Constants.DRAIN_W_B;
+        this.drainRaceBonus = Constants.DRAIN_W_B + this.damageModifier;
         w.receiveDamage(this.drain(w));
         if (w.isAvailable()) {
             w.interactWith(this);
@@ -108,8 +108,8 @@ public class Wizard extends Hero {
         if (r.isAvailable()) {
             r.interactWith(this);
         }
-        this.drainRaceBonus = Constants.DRAIN_R_B;
-        this.deflectRaceBonus = Constants.DEFLECT_R_B;
+        this.drainRaceBonus = Constants.DRAIN_R_B + this.damageModifier;
+        this.deflectRaceBonus = Constants.DEFLECT_R_B + this.damageModifier;
         int dmgReceived =
                 Math.round(this.getLastDamageReceived().get(0) * (1 / Constants.BACKSTAB_W_B)
                         + this.getLastDamageReceived().get(1) * (1 / Constants.PARALYSIS_W_B));

@@ -86,8 +86,8 @@ public class Rogue extends Hero {
     @Override
     final void interactWith(final Pyromancer p) {
         this.setAvailable(false);
-        this.backstabBonus = Constants.BACKSTAB_P_B;
-        this.paralysisBonus = Constants.PARALYSIS_P_B;
+        this.backstabBonus = Constants.BACKSTAB_P_B + this.damageModifier;
+        this.paralysisBonus = Constants.PARALYSIS_P_B + this.damageModifier;
         p.receiveDamage(this.backstab() + this.paralysis(p).get(0));
         if (p.isAvailable()) {
             p.interactWith(this);
@@ -97,8 +97,8 @@ public class Rogue extends Hero {
     @Override
     final void interactWith(final Knight k) {
         this.setAvailable(false);
-        this.backstabBonus = Constants.BACKSTAB_K_B;
-        this.paralysisBonus = Constants.PARALYSIS_K_B;
+        this.backstabBonus = Constants.BACKSTAB_K_B + this.damageModifier;
+        this.paralysisBonus = Constants.PARALYSIS_K_B + this.damageModifier;
         k.receiveDamage(this.backstab() + this.paralysis(k).get(0));
         if (k.isAvailable()) {
             k.interactWith(this);
@@ -108,8 +108,8 @@ public class Rogue extends Hero {
     @Override
     final void interactWith(final Wizard w) {
         this.setAvailable(false);
-        this.backstabBonus = Constants.BACKSTAB_W_B;
-        this.paralysisBonus = Constants.PARALYSIS_W_B;
+        this.backstabBonus = Constants.BACKSTAB_W_B + this.damageModifier;
+        this.paralysisBonus = Constants.PARALYSIS_W_B + this.damageModifier;
         w.receiveDamage(this.backstab(), this.paralysis(w).get(0));
         if (w.isAvailable()) {
             w.interactWith(this);
@@ -119,8 +119,8 @@ public class Rogue extends Hero {
     @Override
     final void interactWith(final Rogue r) {
         this.setAvailable(false);
-        this.backstabBonus = Constants.BACKSTAB_R_B;
-        this.paralysisBonus = Constants.PARALYSIS_R_B;
+        this.backstabBonus = Constants.BACKSTAB_R_B + this.damageModifier;
+        this.paralysisBonus = Constants.PARALYSIS_R_B + this.damageModifier;
         r.receiveDamage(this.backstab() + this.paralysis(r).get(0));
         if (r.isAvailable()) {
             r.interactWith(this);

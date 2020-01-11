@@ -68,8 +68,8 @@ public class Knight extends Hero {
     @Override
     final void interactWith(final Pyromancer p) {
         this.setAvailable(false);
-        this.executeBonus = Constants.EXECUTE_P_B;
-        this.slamBonus = Constants.SLAM_P_B;
+        this.executeBonus = Constants.EXECUTE_P_B + this.damageModifier;
+        this.slamBonus = Constants.SLAM_P_B + this.damageModifier;
         p.receiveDamage(this.execute(p) + this.slam(p));
         if (p.isAvailable()) {
             p.interactWith(this);
@@ -91,8 +91,8 @@ public class Knight extends Hero {
     @Override
     final void interactWith(final Wizard w) {
         this.setAvailable(false);
-        this.executeBonus = Constants.EXECUTE_W_B;
-        this.slamBonus = Constants.SLAM_W_B;
+        this.executeBonus = Constants.EXECUTE_W_B + this.damageModifier;
+        this.slamBonus = Constants.SLAM_W_B + this.damageModifier;
         w.receiveDamage(this.execute(w), this.slam(w));
         if (w.isAvailable()) {
             w.interactWith(this);
@@ -103,8 +103,8 @@ public class Knight extends Hero {
     @Override
     final void interactWith(final Rogue r) {
         this.setAvailable(false);
-        this.executeBonus = Constants.EXECUTE_R_B;
-        this.slamBonus = Constants.SLAM_R_B;
+        this.executeBonus = Constants.EXECUTE_R_B + this.damageModifier;
+        this.slamBonus = Constants.SLAM_R_B + this.damageModifier;
         r.receiveDamage(this.execute(r) + this.slam(r));
         if (r.isAvailable()) {
             r.interactWith(this);

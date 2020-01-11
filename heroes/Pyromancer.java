@@ -68,8 +68,8 @@ public class Pyromancer extends Hero {
     @Override
     final void interactWith(final Pyromancer p) {
         this.setAvailable(false);
-        this.fireblastBonus = Constants.FIREBLAST_P_B;
-        this.igniteBonus = Constants.IGNITE_P_B;
+        this.fireblastBonus = Constants.FIREBLAST_P_B + this.damageModifier;
+        this.igniteBonus = Constants.IGNITE_P_B + this.damageModifier;
         p.receiveDamage(this.fireblast() + this.ignite(p).get(0));
         if (p.isAvailable()) {
             p.interactWith(this);
@@ -79,8 +79,8 @@ public class Pyromancer extends Hero {
     @Override
     final void interactWith(final Knight k) {
         this.setAvailable(false);
-        this.fireblastBonus = Constants.FIREBLAST_K_B;
-        this.igniteBonus = Constants.IGNITE_K_B;
+        this.fireblastBonus = Constants.FIREBLAST_K_B + this.damageModifier;
+        this.igniteBonus = Constants.IGNITE_K_B + this.damageModifier;
         k.receiveDamage(this.fireblast() + this.ignite(k).get(0));
         if (k.isAvailable()) {
             k.interactWith(this);
@@ -90,8 +90,8 @@ public class Pyromancer extends Hero {
     @Override
     final void interactWith(final Wizard w) {
         this.setAvailable(false);
-        this.fireblastBonus = Constants.FIREBLAST_W_B;
-        this.igniteBonus = Constants.IGNITE_W_B;
+        this.fireblastBonus = Constants.FIREBLAST_W_B + this.damageModifier;
+        this.igniteBonus = Constants.IGNITE_W_B + this.damageModifier;
         w.receiveDamage(this.fireblast(), this.ignite(w).get(0));
         if (w.isAvailable()) {
             w.interactWith(this);
@@ -101,8 +101,8 @@ public class Pyromancer extends Hero {
     @Override
     final void interactWith(final Rogue r) {
         this.setAvailable(false);
-        this.fireblastBonus = Constants.FIREBLAST_R_B;
-        this.igniteBonus = Constants.IGNITE_R_B;
+        this.fireblastBonus = Constants.FIREBLAST_R_B + this.damageModifier;
+        this.igniteBonus = Constants.IGNITE_R_B + this.damageModifier;
         r.receiveDamage(this.fireblast() + this.ignite(r).get(0));
         if (r.isAvailable()) {
             r.interactWith(this);
