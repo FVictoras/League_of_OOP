@@ -24,6 +24,11 @@ public class Knight extends Hero {
         return "K";
     }
 
+    @Override
+    public String toString() {
+        return "Knight";
+    }
+
     public final void increaseDamageModifier(float val) {
         this.damageModifier = this.damageModifier + val;
     }

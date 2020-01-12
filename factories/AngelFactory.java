@@ -2,6 +2,7 @@ package factories;
 
 import angels.*;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.logging.Level;
@@ -10,17 +11,19 @@ public class AngelFactory {
 
     public static ArrayList<ArrayList<Angel>> myAngels = new ArrayList<ArrayList<Angel>>(15);
 
-    public AngelFactory(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels) {
-        this.setMyAngels(angels);
+    public AngelFactory(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels,
+                        String output) throws IOException {
+        this.setMyAngels(angels, output);
     }
 
     public final ArrayList<ArrayList<Angel>> getMyAngels() {
         return myAngels;
     }
 
-    public void setMyAngels(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels) {
+    public void setMyAngels(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels,
+                            String output) throws IOException {
         ArrayList<Angel> arrAngels = new ArrayList<Angel>();
-        Angel nullAngel = new NonAngel(-1, -1);
+        Angel nullAngel = new NonAngel(-1, -1, output);
         ArrayList<Angel> nullClone = new ArrayList<Angel>();
         nullClone.add(nullAngel);
         for (int i = 0; i < angels.size(); i++) {
@@ -32,8 +35,7 @@ public class AngelFactory {
                     HashMap<String, ArrayList<Integer>> miniAngels = it1.getValue();
                     Set<Map.Entry<String, ArrayList<Integer>>> s2 = miniAngels.entrySet();
                     for (Map.Entry<String, ArrayList<Integer>> it2 : s2) {
-//                        System.out.println(it2.getKey() + it2.getValue());
-                        arrAngels.add(this.createAngel(it2.getKey(), it2.getValue()));
+                        arrAngels.add(this.createAngel(it2.getKey(), it2.getValue(), output));
                     }
                 }
                 ArrayList<Angel> clone = (ArrayList<Angel>) arrAngels.clone();
@@ -41,40 +43,38 @@ public class AngelFactory {
             }
             arrAngels.clear();
         }
-        System.out.println(myAngels);
-        System.out.println("lala"+myAngels.get(0).get(0));
     }
 
-    public final Angel createAngel(String type, ArrayList<Integer> coord) {
+    public final Angel createAngel(String type, ArrayList<Integer> coord, String output) throws IOException {
         if (type.equals("DamageAngel")) {
-            return new DamageAngel(coord.get(0), coord.get(1));
+            return new DamageAngel(coord.get(0), coord.get(1), output);
         }
         if (type.equals("DarkAngel")) {
-            return new DarkAngel(coord.get(0), coord.get(1));
+            return new DarkAngel(coord.get(0), coord.get(1), output);
         }
         if (type.equals("Dracula")) {
-            return new Dracula(coord.get(0), coord.get(1));
+            return new Dracula(coord.get(0), coord.get(1), output);
         }
         if (type.equals("GoodBoy")) {
-            return new GoodBoy(coord.get(0), coord.get(1));
+            return new GoodBoy(coord.get(0), coord.get(1), output);
         }
         if (type.equals("LevelUpAngel")) {
-            return new LevelUpAngel(coord.get(0), coord.get(1));
+            return new LevelUpAngel(coord.get(0), coord.get(1), output);
         }
         if (type.equals("LifeGiver")) {
-            return new LifeGiver(coord.get(0), coord.get(1));
+            return new LifeGiver(coord.get(0), coord.get(1), output);
         }
         if (type.equals("SmallAngel")) {
-            return new SmallAngel(coord.get(0), coord.get(1));
+            return new SmallAngel(coord.get(0), coord.get(1), output);
         }
         if (type.equals("Spawner")) {
-            return new Spawner(coord.get(0), coord.get(1));
+            return new Spawner(coord.get(0), coord.get(1), output);
         }
         if (type.equals("TheDoomer")) {
-            return new TheDoomer(coord.get(0), coord.get(1));
+            return new TheDoomer(coord.get(0), coord.get(1), output);
         }
         if (type.equals("XPAngel")) {
-            return new XPAngel( coord.get(0), coord.get(1));
+            return new XPAngel( coord.get(0), coord.get(1), output);
         }
         return null;
     }

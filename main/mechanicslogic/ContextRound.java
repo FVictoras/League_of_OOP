@@ -2,6 +2,9 @@ package main.mechanicslogic;
 
 import common.Constants;
 import heroes.Hero;
+import main.Log;
+
+import java.io.IOException;
 
 public class ContextRound {
     private RoundStrategy roundStrategy;
@@ -38,5 +41,10 @@ public class ContextRound {
     public void doOperation(final Hero h1, final Hero h2) {
         roundStrategy.doOperation(h1, h2);
     }
+
+    public void doOperation(final Hero h1, final Hero h2, final String output) throws IOException {
+        roundStrategy.doOperation(h1, h2, output);
+    }
+
 
 }

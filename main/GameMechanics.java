@@ -38,7 +38,7 @@ class GameMechanics {
     private int nRows;
     private ArrayList<ArrayList<Angel>> myAngels;
 
-    GameMechanics(final GameInput gameInput, final String outputPath) {
+    GameMechanics(final GameInput gameInput, final String outputPath) throws IOException {
         this.heroes = (new PlayerFactory(gameInput.getPlayerOnTheMap())).allHeroes();
         this.map = gameInput.getMap();
         this.moves = gameInput.getPlayerMoves();
@@ -56,6 +56,7 @@ class GameMechanics {
     }
     final void launchGame() throws IOException {
         for (int i = 0; i < numberOfRounds; i++) {
+            Log.update(i+1, outputPath);
             this.setAllAvailable();
             ContextRound roundLogic = new ContextRound(Constants.DMG_OVERTIME);
             for (Hero h : heroes) {
@@ -78,12 +79,13 @@ class GameMechanics {
         this.printScoreboard();
     }
 
-    private void AngelVisit(int round) {
+    private void AngelVisit(int round) throws IOException {
         ArrayList<Angel> myRoundAngels = new ArrayList<Angel>(myAngels.get(round));
         ArrayList<Hero> heroesToBeVisited = new ArrayList<Hero>();
         for (Angel angel: myRoundAngels
              ) {
             if (angel.getxCoordonate()!=-1) {
+                Log.update(angel, outputPath);
                 heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(), angel.getyCoordonate()));
                 for (Hero h : heroesToBeVisited) {
                     angel.visit(h);
@@ -119,7 +121,7 @@ class GameMechanics {
         }
     }
 
-    private void checkCollisions() {
+    private void checkCollisions() throws IOException {
         int[][] traceMap = new int[nColumn][nRows];
         for (int i = 0; i < nColumn; i++) {
             for (int j = 0; j < nColumn; j++) {
@@ -139,7 +141,7 @@ class GameMechanics {
         }
     }
 
-    private void startAttack(final Hero h1, final Hero h2, final char tile) {
+    private void startAttack(final Hero h1, final Hero h2, final char tile) throws IOException {
         ContextTile tileBonus = new ContextTile(tile);
         ContextHero strategy = new ContextHero(h1);
         if (h1.getStunned()==0) {
@@ -154,21 +156,21 @@ class GameMechanics {
         h1.accept(h2);
         ContextRound roundLogic = new ContextRound(Constants.XP_OPERATION);
         if (UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
-            roundLogic.doOperation(h1, h2);
+            roundLogic.doOperation(h1, h2, outputPath);
         }
         if (!UtilsHero.isAlive(h1) && UtilsHero.isAlive(h2)) {
-            roundLogic.doOperation(h2, h1);
+            roundLogic.doOperation(h2, h1, outputPath);
         }
         if (!UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
             int hardLevel = h1.getLevel();
-            roundLogic.doOperation(h1, h2);
+            roundLogic.doOperation(h1, h2, outputPath);
             int newHardLevel = h1.getLevel();
             // Corner case cand amandoi se omoara si primul primeste xp, creste level, iar al doilea
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1
             // inainte de primirea xp-ului.
             if (newHardLevel > hardLevel) {
                 h1.setLevel(newHardLevel - (newHardLevel - hardLevel));
-                roundLogic.doOperation(h2, h1);
+                roundLogic.doOperation(h2, h1, outputPath);
                 h1.setLevel(newHardLevel);
             }
         }

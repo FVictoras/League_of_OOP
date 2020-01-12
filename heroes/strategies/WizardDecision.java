@@ -19,7 +19,6 @@ public class WizardDecision implements heroStrategy{
         if (this.choice == 1) {
             h.setHealth((int)(1.2f*h.getHealth()));
             h.increaseDamageModifier(-0.2f);
-            System.out.println(0f-0.2f);
         }
     }
 }

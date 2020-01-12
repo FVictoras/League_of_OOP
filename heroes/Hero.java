@@ -17,8 +17,16 @@ import java.util.ArrayList;
 
 public abstract class Hero {
     private int health, xp, level, xCoordonate, yCoordonate, damageOvertime, roundsOvertime,
-            roundsStunned;
+            roundsStunned, id;
     private ArrayList<Integer> lastDamageReceived;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public final  int getDamageOvertime() {
         return damageOvertime;
@@ -31,6 +39,7 @@ public abstract class Hero {
     public final void setRoundsOvertime(final int roundsOvertime) {
         this.roundsOvertime = roundsOvertime;
     }
+    public String toString() { return "Hero"; }
 
     final ArrayList<Integer> getLastDamageReceived() {
         return lastDamageReceived;

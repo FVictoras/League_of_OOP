@@ -80,7 +80,6 @@ class GameInputLoader {
                 Map<Integer, HashMap<String, ArrayList<Integer>>> aux =
                         new HashMap<Integer, HashMap<String, ArrayList<Integer>>>();
                     if (n_angels == 0) {
-                        System.out.println("Pentru runda " + i + " nu exista ingeri :(");
                         angelsOnTheMap.add(i, null);
                     } else {
                         for (int j = 0; j<n_angels; j++) {
@@ -103,8 +102,7 @@ class GameInputLoader {
                         angelsOnTheMap.add(i, aux);
                     }
             }
-            System.out.println(angelsOnTheMap);
-            new AngelFactory(angelsOnTheMap);
+            new AngelFactory(angelsOnTheMap, mOutputPath);
         } catch (IOException e) {
             e.printStackTrace();
         }

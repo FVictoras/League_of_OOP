@@ -1,11 +1,14 @@
 package angels;
 
 import heroes.Hero;
+import main.Log;
+
+import java.io.IOException;
 
 public class Angel implements AngelVisitor{
     int xCoordonate;
     int yCoordonate;
-
+    String output;
     public int getxCoordonate() {
         return xCoordonate;
     }
@@ -14,9 +17,10 @@ public class Angel implements AngelVisitor{
         return yCoordonate;
     }
 
-    public Angel(int xCoordonate, int yCoordonate) {
+    public Angel(int xCoordonate, int yCoordonate, String output) throws IOException {
         this.xCoordonate = xCoordonate;
         this.yCoordonate = yCoordonate;
+        this.output = output;
     }
 
     @Override
@@ -25,5 +29,5 @@ public class Angel implements AngelVisitor{
     }
 
     @Override
-    public void visit(Hero H) {}
+    public void visit(Hero H) throws IOException {}
 }

@@ -24,6 +24,9 @@ public class Rogue extends Hero {
         return "R";
     }
 
+    public String toString() {
+        return "Rogue";
+    }
 
     public final void increaseDamageModifier(float val) {
         this.damageModifier = this.damageModifier + val;

@@ -31,6 +31,9 @@ public class PlayerFactory {
                 myHeroes.add(this.createHero(it2.getKey(), it2.getValue()));
             }
         }
+        for (int i = 0; i<myHeroes.size(); i++) {
+            myHeroes.get(i).setId(i);
+        }
         return myHeroes;
     }
 
