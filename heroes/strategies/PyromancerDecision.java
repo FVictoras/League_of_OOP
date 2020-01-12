@@ -11,7 +11,14 @@ public class PyromancerDecision implements heroStrategy {
     }
 
     @Override
-    public void setPlayersStrategy(Hero h1) {
-
+    public void setPlayersStrategy(Hero h) {
+        if (this.choice == 0) {
+            h.setHealth((int)(0.75f*h.getHealth()));
+            h.increaseDamageModifier(0.70f);
+        }
+        if (this.choice == 1) {
+            h.setHealth((int)(1.33f*h.getHealth()));
+            h.increaseDamageModifier(-0.3f);
+        }
     }
 }

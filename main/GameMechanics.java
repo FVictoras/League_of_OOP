@@ -5,6 +5,7 @@ import common.Constants;
 import factories.AngelFactory;
 import factories.PlayerFactory;
 import heroes.Hero;
+import heroes.strategies.ContextHero;
 import heroes.tilebonuses.ContextTile;
 import heroes.utils.UtilsHero;
 import main.mechanicslogic.ContextRound;
@@ -140,6 +141,14 @@ class GameMechanics {
 
     private void startAttack(final Hero h1, final Hero h2, final char tile) {
         ContextTile tileBonus = new ContextTile(tile);
+        ContextHero strategy = new ContextHero(h1);
+        if (h1.getStunned()==0) {
+            strategy.executeStrategy(h1);
+        }
+        strategy = new ContextHero(h2);
+        if (h2.getStunned()==0) {
+            strategy.executeStrategy(h2);
+        }
         tileBonus.executeStrategy(h1);
         tileBonus.executeStrategy(h2);
         h1.accept(h2);

@@ -10,7 +10,14 @@ public class RogueDecision implements heroStrategy {
         this.choice = choice;
     }
     @Override
-    public void setPlayersStrategy(Hero h1) {
-
+    public void setPlayersStrategy(Hero h) {
+        if (this.choice == 0) {
+            h.setHealth((int)(0.8571f*h.getHealth()));
+            h.increaseDamageModifier(0.40f);
+        }
+        if (this.choice == 1) {
+            h.setHealth((int)(1.5f*h.getHealth()));
+            h.increaseDamageModifier(-0.1f);
+        }
     }
 }

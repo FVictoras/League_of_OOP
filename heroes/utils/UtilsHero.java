@@ -41,4 +41,5 @@ public final class UtilsHero {
     public static boolean isAlive(final Hero h) {
         return h.getHealth() > 0;
     }
+
 }

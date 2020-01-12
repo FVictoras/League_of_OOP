@@ -15,7 +15,7 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
         // Se citeste inputul, incepe jocul, se scriu fisierele.
         GameInputLoader loader = new GameInputLoader("E:\\Java Development\\League of " +
-                "OOP\\checkerE2\\checker\\resources\\in\\fightRKL.in", "E:\\Java " +
+                "OOP\\checkerE2\\checker\\resources\\in\\fightRWL.in", "E:\\Java " +
                 "Development\\League of OOP\\checkerE2\\checker\\resources\\in\\out.txt");
         GameInput gameInput = loader.load();
         GameMechanics m = new GameMechanics(gameInput, loader.getmOutputPath());
@@ -25,7 +25,6 @@ public final class Main {
         System.out.println(angels.get(0));
         ArrayList<AngelVisitor> angelsVisitors = new ArrayList<AngelVisitor>();
         angelsVisitors.add(new DamageAngel(1,4));
-        // un test
         System.out.println(angelsVisitors.get(0));
         Hero salut = new Rogue(1,2);
         angelsVisitors.get(0).visit(salut);
