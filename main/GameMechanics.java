@@ -89,6 +89,7 @@ class GameMechanics {
         ArrayList<Hero> heroesToBeVisited = new ArrayList<Hero>();
         for (Angel angel: myRoundAngels
              ) {
+//            System.out.println(angel);
             if (angel.getxCoordonate()!=-1) {
                 Log.update(angel, fileWriter);
                 heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(), angel.getyCoordonate()));
@@ -161,14 +162,22 @@ class GameMechanics {
         h1.accept(h2);
         ContextRound roundLogic = new ContextRound(Constants.XP_OPERATION);
         if (UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
+            Log.update(h1, h2, fileWriter);
             roundLogic.doOperation(h1, h2, fileWriter);
+
         }
         if (!UtilsHero.isAlive(h1) && UtilsHero.isAlive(h2)) {
+            Log.update(h2, h1, fileWriter);
             roundLogic.doOperation(h2, h1, fileWriter);
+
         }
         if (!UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
             int hardLevel = h1.getLevel();
+            Log.update(h2, h1, fileWriter);
+            Log.update(h1, h2, fileWriter);
             roundLogic.doOperation(h1, h2, fileWriter);
+
+
             int newHardLevel = h1.getLevel();
             // Corner case cand amandoi se omoara si primul primeste xp, creste level, iar al doilea
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1

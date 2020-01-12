@@ -24,18 +24,22 @@ public class Spawner extends Angel implements AngelVisitor {
             if (h instanceof Knight) {
                 h.setHealth(200);
                 Log.update(this, h, fileWriter);
+                Log.updateB(h, fileWriter);
             }
             if (h instanceof Pyromancer) {
                 h.setHealth(150);
                 Log.update(this, h, fileWriter);
+                Log.updateB(h, fileWriter);
             }
             if (h instanceof Rogue) {
                 h.setHealth(180);
                 Log.update(this, h, fileWriter);
+                Log.updateB(h, fileWriter);
             }
             if (h instanceof Wizard) {
                 h.setHealth(120);
                 Log.update(this, h, fileWriter);
+                Log.updateB(h, fileWriter);
             }
         }
     }

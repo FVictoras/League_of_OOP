@@ -25,7 +25,6 @@ public class XpOperation implements RoundStrategy {
      */
     @Override
     public void doOperation(final Hero h1, final Hero h2, final FileWriter fileWriter) throws IOException {
-        Log.update(h1, h2, fileWriter);
         h1.setXp(h1.getXp() + Math.max(0,
                 (Constants.XP_EARN_BASE - (h1.getLevel() - h2.getLevel())
                         * Constants.XP_EARN_LEVEL)));

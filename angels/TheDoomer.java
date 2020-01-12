@@ -1,6 +1,7 @@
 package angels;
 
 import heroes.*;
+import heroes.utils.UtilsHero;
 import main.Log;
 import fileio.implementations.FileWriter;
 
@@ -18,9 +19,11 @@ public class TheDoomer extends Angel implements AngelVisitor {
 
     @Override
     public void visit(Hero h, FileWriter fileWriter) throws IOException {
-        h.setHealth(-1);
-        Log.update(this, h, fileWriter);
-        Log.updateA(h, fileWriter);
+        if(UtilsHero.isAlive(h)) {
+            h.setHealth(-1);
+            Log.update(this, h, fileWriter);
+            Log.updateA(h, fileWriter);
+        }
     }
 
 }

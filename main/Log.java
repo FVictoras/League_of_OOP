@@ -17,6 +17,15 @@ public class Log {
         fileWriter.writeNewLine();
     }
 
+    public static void updateB(Hero h, FileWriter fileWriter) throws IOException {
+        fileWriter.writeWord("Player ");
+        fileWriter.writeWord(h.toString());
+        fileWriter.writeWord(" ");
+        fileWriter.writeInt(h.getId());
+        fileWriter.writeWord(" was brought to life by an angel");
+        fileWriter.writeNewLine();
+    }
+
     public static void update(int i, FileWriter fileWriter) throws IOException {
         fileWriter.writeWord("~~ Round ");
         fileWriter.writeInt(i);

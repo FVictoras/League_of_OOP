@@ -15,8 +15,9 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
         // Se citeste inputul, incepe jocul, se scriu fisierele.
         GameInputLoader loader = new GameInputLoader("E:\\Java Development\\League of " +
-                "OOP\\checkerE2\\checker\\resources\\in\\4x4.in", "E:\\Java " +
-                "Development\\League of OOP\\checkerE2\\checker\\resources\\in\\out.txt");
+                "OOP\\src\\checker\\resources\\in\\fightKWL.in", "E:\\Java Development\\League of" +
+                " OOP\\src\\checker\\resources\\in\\out.txt");
+//        GameInputLoader loader = new GameInputLoader(args[0], args[1]);
         GameInput gameInput = loader.load();
         GameMechanics m = new GameMechanics(gameInput, loader.getmOutputPath());
         m.launchGame();

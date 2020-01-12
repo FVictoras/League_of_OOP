@@ -86,7 +86,7 @@ public class Knight extends Hero {
     final void interactWith(final Knight k) {
         this.setAvailable(false);
         this.executeBonus = Constants.EXECUTE_K_B;
-        this.slamBonus = Constants.SLAM_K_B;
+        this.slamBonus = Constants.SLAM_K_B + this.damageModifier;
         k.receiveDamage(this.execute(k) + this.slam(k));
         if (k.isAvailable()) {
             k.interactWith(this);
