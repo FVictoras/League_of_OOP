@@ -36,7 +36,7 @@ final class GameOutput {
                 }
             fileWriter.writeNewLine();
             }
-            fileWriter.close();
+//            fileWriter.close();
         } catch (Exception e) {
             e.getStackTrace();
         }

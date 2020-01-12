@@ -18,6 +18,16 @@ import java.util.ArrayList;
 public abstract class Hero {
     private int health, xp, level, xCoordonate, yCoordonate, damageOvertime, roundsOvertime,
             roundsStunned, id;
+
+    public boolean isStunned() {
+        return stunned;
+    }
+
+    public void setStunned(boolean stunned) {
+        this.stunned = stunned;
+    }
+
+    private boolean stunned;
     private ArrayList<Integer> lastDamageReceived;
 
     public int getId() {
@@ -76,6 +86,7 @@ public abstract class Hero {
         this.damageOvertime = 0;
         this.roundsOvertime = 0;
         this.available = true;
+        this.stunned = true;
     }
 
     public final int getHealth() {

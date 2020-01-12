@@ -66,7 +66,7 @@ public final class Constants {
     // pyro bonus
     public static final float FIREBLAST_R_B = 1 + (-20 / 100f);
     public static final float FIREBLAST_K_B = 1 + (20 / 100f);
-    public static final float FIREBLAST_P_B = 1 + (10 / 100f);
+    public static final float FIREBLAST_P_B = 1 + (-10 / 100f);
     public static final float FIREBLAST_W_B = 1 + (5 / 100);
 
     public static final float IGNITE_R_B = 1 + (-20 / 100f);
@@ -116,7 +116,7 @@ public final class Constants {
     //darkAngel
     public static final int DARKANGEL_K = 40;
     public static final int DARKANGEL_P = 30;
-    public static final int DARKANGEL_W = 10;
-    public static final int DARKANGEL_R = 20;
+    public static final int DARKANGEL_W = 20;
+    public static final int DARKANGEL_R = 10;
 
 }

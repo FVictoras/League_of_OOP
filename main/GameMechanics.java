@@ -4,14 +4,13 @@ import angels.Angel;
 import common.Constants;
 import factories.AngelFactory;
 import factories.PlayerFactory;
+import fileio.implementations.FileWriter;
 import heroes.Hero;
 import heroes.strategies.ContextHero;
 import heroes.tilebonuses.ContextTile;
 import heroes.utils.UtilsHero;
 import main.mechanicslogic.ContextRound;
 
-import java.io.File;
-import fileio.implementations.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,9 +57,10 @@ class GameMechanics {
             h.setAvailable(true);
         }
     }
+
     final void launchGame() throws IOException {
         for (int i = 0; i < numberOfRounds; i++) {
-            Log.update(i+1, fileWriter);
+            Log.update(i + 1, fileWriter);
             this.setAllAvailable();
             ContextRound roundLogic = new ContextRound(Constants.DMG_OVERTIME);
             for (Hero h : heroes) {
@@ -71,8 +71,14 @@ class GameMechanics {
                     // Se face miscarea
                     if (h.getStunned() == 0 && UtilsHero.isAlive(h)) {
                         this.doMovement(i, h);
+                        h.setStunned(false);
                     } else {
                         h.setStunned(h.getStunned() - 1);
+                        h.setStunned(true);
+                    }
+                    ContextHero strategy = new ContextHero(h);
+                    if (!h.isStunned() && UtilsHero.isAlive(h)) {
+                        strategy.executeStrategy(h);
                     }
                 }
             }
@@ -81,18 +87,22 @@ class GameMechanics {
             this.AngelVisit(i);
             fileWriter.writeNewLine();
         }
+//        this.printScoreboard();
         this.printScoreboard();
+        fileWriter.close();
+
+//        System.out.println(UtilsHero.getMaxHp(heroes.get(0)));
     }
 
     private void AngelVisit(int round) throws IOException {
         ArrayList<Angel> myRoundAngels = new ArrayList<Angel>(myAngels.get(round));
         ArrayList<Hero> heroesToBeVisited = new ArrayList<Hero>();
-        for (Angel angel: myRoundAngels
-             ) {
+        for (Angel angel : myRoundAngels) {
 //            System.out.println(angel);
-            if (angel.getxCoordonate()!=-1) {
+            if (angel.getxCoordonate() != -1) {
                 Log.update(angel, fileWriter);
-                heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(), angel.getyCoordonate()));
+                heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(),
+                        angel.getyCoordonate()));
                 for (Hero h : heroesToBeVisited) {
                     angel.visit(h, fileWriter);
                 }
@@ -103,8 +113,8 @@ class GameMechanics {
 
     private ArrayList<Hero> collisions(int x, int y) {
         ArrayList<Hero> returnHero = new ArrayList<Hero>();
-        for (Hero h: heroes) {
-            if (h.getxCoordonate() == x && h.getyCoordonate()==y) {
+        for (Hero h : heroes) {
+            if (h.getxCoordonate() == x && h.getyCoordonate() == y) {
                 returnHero.add(h);
             }
         }
@@ -142,6 +152,7 @@ class GameMechanics {
                     traceMap[x][y] = heroes.indexOf(h);
                 } else {
                     startAttack(h, heroes.get(traceMap[x][y]), map[x][y]);
+                    this.printScoreboard();
                 }
             }
         }
@@ -149,14 +160,14 @@ class GameMechanics {
 
     private void startAttack(final Hero h1, final Hero h2, final char tile) throws IOException {
         ContextTile tileBonus = new ContextTile(tile);
-        ContextHero strategy = new ContextHero(h1);
-        if (h1.getStunned()==0) {
-            strategy.executeStrategy(h1);
-        }
-        strategy = new ContextHero(h2);
-        if (h2.getStunned()==0) {
-            strategy.executeStrategy(h2);
-        }
+//        ContextHero strategy = new ContextHero(h1);
+//        if (!h1.isStunned() && UtilsHero.isAlive(h1)) {
+//            strategy.executeStrategy(h1);
+//        }
+//        strategy = new ContextHero(h2);
+//        if (!h2.isStunned() && UtilsHero.isAlive(h2)) {
+//            strategy.executeStrategy(h2);
+//        }
         tileBonus.executeStrategy(h1);
         tileBonus.executeStrategy(h2);
         h1.accept(h2);
@@ -173,11 +184,10 @@ class GameMechanics {
         }
         if (!UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
             int hardLevel = h1.getLevel();
+            int auxLevel = h2.getLevel();
             Log.update(h2, h1, fileWriter);
             Log.update(h1, h2, fileWriter);
             roundLogic.doOperation(h1, h2, fileWriter);
-
-
             int newHardLevel = h1.getLevel();
             // Corner case cand amandoi se omoara si primul primeste xp, creste level, iar al doilea
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1
@@ -186,6 +196,11 @@ class GameMechanics {
                 h1.setLevel(newHardLevel - (newHardLevel - hardLevel));
                 roundLogic.doOperation(h2, h1, fileWriter);
                 h1.setLevel(newHardLevel);
+                Log.update(h2, (h2.getLevel() - auxLevel), fileWriter);
+                Log.update(h1, (newHardLevel - hardLevel), fileWriter);
+            } else {
+
+                roundLogic.doOperation(h2, h1, fileWriter);
             }
         }
     }

@@ -41,12 +41,12 @@ public class Knight extends Hero {
         float reqHp =
                 (Constants.EXECUTE_BASE_DESTROY + (Constants.EXECUTE_INCREASED_DESTROY
                         * h.getLevel())) * UtilsHero.getMaxHp(h);
-        if (h.getHealth() > reqHp) {
+//        if (h.getHealth() > reqHp) {
             return Math.round(bonusTile * (executeBonus * (Constants.EXECUTE_BASE_DMG
                     + Constants.EXECUTE_INCREASED_DMG * this.getLevel())));
-        } else {
-            return h.getHealth();
-        }
+//        } else {
+//            return h.getHealth();
+//        }
     }
 
     private int slam(final Hero h) {
