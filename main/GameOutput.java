@@ -12,10 +12,12 @@ final class GameOutput {
     private GameOutput() {
 
     }
-    static void printGame(final String output, final ArrayList<Hero> heroes) throws IOException {
-        FileWriter fileWriter = new FileWriter(output);
+    static void printGame(final ArrayList<Hero> heroes,
+                          final  FileWriter fileWriter) throws IOException {
         // Se scrie in fisierul de output.
         try {
+            fileWriter.writeWord("~~ Results ~~");
+            fileWriter.writeNewLine();
             for (Hero h : heroes) {
                 fileWriter.writeWord(h.emote());
                 fileWriter.writeWord(" ");

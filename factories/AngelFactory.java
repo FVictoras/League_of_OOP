@@ -11,19 +11,18 @@ public class AngelFactory {
 
     public static ArrayList<ArrayList<Angel>> myAngels = new ArrayList<ArrayList<Angel>>(15);
 
-    public AngelFactory(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels,
-                        String output) throws IOException {
-        this.setMyAngels(angels, output);
+    public AngelFactory(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels)
+            throws IOException {
+        this.setMyAngels(angels);
     }
 
     public final ArrayList<ArrayList<Angel>> getMyAngels() {
         return myAngels;
     }
 
-    public void setMyAngels(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels,
-                            String output) throws IOException {
+    public void setMyAngels(List<Map<Integer, HashMap<String, ArrayList<Integer>>>> angels) throws IOException {
         ArrayList<Angel> arrAngels = new ArrayList<Angel>();
-        Angel nullAngel = new NonAngel(-1, -1, output);
+        Angel nullAngel = new NonAngel(-1, -1);
         ArrayList<Angel> nullClone = new ArrayList<Angel>();
         nullClone.add(nullAngel);
         for (int i = 0; i < angels.size(); i++) {
@@ -35,7 +34,7 @@ public class AngelFactory {
                     HashMap<String, ArrayList<Integer>> miniAngels = it1.getValue();
                     Set<Map.Entry<String, ArrayList<Integer>>> s2 = miniAngels.entrySet();
                     for (Map.Entry<String, ArrayList<Integer>> it2 : s2) {
-                        arrAngels.add(this.createAngel(it2.getKey(), it2.getValue(), output));
+                        arrAngels.add(this.createAngel(it2.getKey(), it2.getValue()));
                     }
                 }
                 ArrayList<Angel> clone = (ArrayList<Angel>) arrAngels.clone();
@@ -45,36 +44,36 @@ public class AngelFactory {
         }
     }
 
-    public final Angel createAngel(String type, ArrayList<Integer> coord, String output) throws IOException {
+    public final Angel createAngel(String type, ArrayList<Integer> coord) throws IOException {
         if (type.equals("DamageAngel")) {
-            return new DamageAngel(coord.get(0), coord.get(1), output);
+            return new DamageAngel(coord.get(0), coord.get(1));
         }
         if (type.equals("DarkAngel")) {
-            return new DarkAngel(coord.get(0), coord.get(1), output);
+            return new DarkAngel(coord.get(0), coord.get(1));
         }
         if (type.equals("Dracula")) {
-            return new Dracula(coord.get(0), coord.get(1), output);
+            return new Dracula(coord.get(0), coord.get(1));
         }
         if (type.equals("GoodBoy")) {
-            return new GoodBoy(coord.get(0), coord.get(1), output);
+            return new GoodBoy(coord.get(0), coord.get(1));
         }
         if (type.equals("LevelUpAngel")) {
-            return new LevelUpAngel(coord.get(0), coord.get(1), output);
+            return new LevelUpAngel(coord.get(0), coord.get(1));
         }
         if (type.equals("LifeGiver")) {
-            return new LifeGiver(coord.get(0), coord.get(1), output);
+            return new LifeGiver(coord.get(0), coord.get(1));
         }
         if (type.equals("SmallAngel")) {
-            return new SmallAngel(coord.get(0), coord.get(1), output);
+            return new SmallAngel(coord.get(0), coord.get(1));
         }
         if (type.equals("Spawner")) {
-            return new Spawner(coord.get(0), coord.get(1), output);
+            return new Spawner(coord.get(0), coord.get(1));
         }
         if (type.equals("TheDoomer")) {
-            return new TheDoomer(coord.get(0), coord.get(1), output);
+            return new TheDoomer(coord.get(0), coord.get(1));
         }
         if (type.equals("XPAngel")) {
-            return new XPAngel( coord.get(0), coord.get(1), output);
+            return new XPAngel( coord.get(0), coord.get(1));
         }
         return null;
     }

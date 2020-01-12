@@ -2,13 +2,14 @@ package angels;
 
 import heroes.*;
 import main.Log;
+import fileio.implementations.FileWriter;
 
 import java.io.IOException;
 
 public class TheDoomer extends Angel implements AngelVisitor {
 
-    public TheDoomer(int xCoordonate, int yCoordonate, String output) throws IOException {
-        super(xCoordonate, yCoordonate, output);
+    public TheDoomer(int xCoordonate, int yCoordonate) throws IOException {
+        super(xCoordonate, yCoordonate);
     }
     @Override
     public String toString() {
@@ -16,9 +17,10 @@ public class TheDoomer extends Angel implements AngelVisitor {
     }
 
     @Override
-    public void visit(Hero h) throws IOException {
+    public void visit(Hero h, FileWriter fileWriter) throws IOException {
         h.setHealth(-1);
-        Log.update(this, h, output);
+        Log.update(this, h, fileWriter);
+        Log.updateA(h, fileWriter);
     }
 
 }

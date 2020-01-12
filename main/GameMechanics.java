@@ -10,6 +10,8 @@ import heroes.tilebonuses.ContextTile;
 import heroes.utils.UtilsHero;
 import main.mechanicslogic.ContextRound;
 
+import java.io.File;
+import fileio.implementations.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +39,7 @@ class GameMechanics {
     private int nColumn;
     private int nRows;
     private ArrayList<ArrayList<Angel>> myAngels;
+    private FileWriter fileWriter;
 
     GameMechanics(final GameInput gameInput, final String outputPath) throws IOException {
         this.heroes = (new PlayerFactory(gameInput.getPlayerOnTheMap())).allHeroes();
@@ -47,6 +50,7 @@ class GameMechanics {
         this.nRows = gameInput.getM();
         this.outputPath = outputPath;
         this.myAngels = new ArrayList<ArrayList<Angel>>(AngelFactory.myAngels);
+        this.fileWriter = new FileWriter(outputPath);
     }
 
     private void setAllAvailable() {
@@ -56,7 +60,7 @@ class GameMechanics {
     }
     final void launchGame() throws IOException {
         for (int i = 0; i < numberOfRounds; i++) {
-            Log.update(i+1, outputPath);
+            Log.update(i+1, fileWriter);
             this.setAllAvailable();
             ContextRound roundLogic = new ContextRound(Constants.DMG_OVERTIME);
             for (Hero h : heroes) {
@@ -75,6 +79,7 @@ class GameMechanics {
             // Se verifica coliziuni
             this.checkCollisions();
             this.AngelVisit(i);
+            fileWriter.writeNewLine();
         }
         this.printScoreboard();
     }
@@ -85,10 +90,10 @@ class GameMechanics {
         for (Angel angel: myRoundAngels
              ) {
             if (angel.getxCoordonate()!=-1) {
-                Log.update(angel, outputPath);
+                Log.update(angel, fileWriter);
                 heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(), angel.getyCoordonate()));
                 for (Hero h : heroesToBeVisited) {
-                    angel.visit(h);
+                    angel.visit(h, fileWriter);
                 }
                 heroesToBeVisited.clear();
             }
@@ -156,28 +161,28 @@ class GameMechanics {
         h1.accept(h2);
         ContextRound roundLogic = new ContextRound(Constants.XP_OPERATION);
         if (UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
-            roundLogic.doOperation(h1, h2, outputPath);
+            roundLogic.doOperation(h1, h2, fileWriter);
         }
         if (!UtilsHero.isAlive(h1) && UtilsHero.isAlive(h2)) {
-            roundLogic.doOperation(h2, h1, outputPath);
+            roundLogic.doOperation(h2, h1, fileWriter);
         }
         if (!UtilsHero.isAlive(h1) && !UtilsHero.isAlive(h2)) {
             int hardLevel = h1.getLevel();
-            roundLogic.doOperation(h1, h2, outputPath);
+            roundLogic.doOperation(h1, h2, fileWriter);
             int newHardLevel = h1.getLevel();
             // Corner case cand amandoi se omoara si primul primeste xp, creste level, iar al doilea
             // cand isi calculeaza XP-ul trebuie sa primeasca corespunzator nivelului eroului 1
             // inainte de primirea xp-ului.
             if (newHardLevel > hardLevel) {
                 h1.setLevel(newHardLevel - (newHardLevel - hardLevel));
-                roundLogic.doOperation(h2, h1, outputPath);
+                roundLogic.doOperation(h2, h1, fileWriter);
                 h1.setLevel(newHardLevel);
             }
         }
     }
 
     private void printScoreboard() throws IOException {
-        GameOutput.printGame(outputPath, heroes);
+        GameOutput.printGame(heroes, fileWriter);
     }
 
 

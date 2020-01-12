@@ -1,6 +1,7 @@
 package main.mechanicslogic;
 
 import common.Constants;
+import fileio.implementations.FileWriter;
 import heroes.Hero;
 import main.Log;
 
@@ -42,8 +43,8 @@ public class ContextRound {
         roundStrategy.doOperation(h1, h2);
     }
 
-    public void doOperation(final Hero h1, final Hero h2, final String output) throws IOException {
-        roundStrategy.doOperation(h1, h2, output);
+    public void doOperation(final Hero h1, final Hero h2, final FileWriter fileWriter) throws IOException {
+        roundStrategy.doOperation(h1, h2, fileWriter);
     }
 
 

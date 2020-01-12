@@ -102,7 +102,7 @@ class GameInputLoader {
                         angelsOnTheMap.add(i, aux);
                     }
             }
-            new AngelFactory(angelsOnTheMap, mOutputPath);
+            new AngelFactory(angelsOnTheMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
