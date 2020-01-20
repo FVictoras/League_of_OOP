@@ -23,10 +23,12 @@ import java.util.HashMap;
     ii) Se verifica daca supravietuiesc damageului overtime.
     iii) Se verifica daca au stun. Daca au nu se efectueaza (2) si li se decrementeaza stunul.
     2) Eroii se misca conform comenzii de la input.
+    NEW) Isi aleg strategia.
     3) Se verifica coliziunile de pe harta. In cazul unei coliziuni se declanseaza (4)
     4) Eroii se ataca. Procedeu implementat prin double-dispatch (detalii in README). In urma atacu-
     lui se verifica starea de viata a fiecaruia si sunt date punctele XP, aferent si levelup + viata
     5) La finalul tuturor rundelor se apeleaza functia de printare.
+    NEW) Toate modificarile, cerute in enunt, sunt notificate cate LOG (observerul).
  */
 
 class GameMechanics {
@@ -48,7 +50,7 @@ class GameMechanics {
         this.nColumn = gameInput.getN();
         this.nRows = gameInput.getM();
         this.outputPath = outputPath;
-        this.myAngels = new ArrayList<ArrayList<Angel>>(AngelFactory.myAngels);
+        this.myAngels = new ArrayList<ArrayList<Angel>>(AngelFactory.getMyAngels());
         this.fileWriter = new FileWriter(outputPath);
     }
 
@@ -76,6 +78,7 @@ class GameMechanics {
                         h.setStunned(h.getStunned() - 1);
                         h.setStunned(true);
                     }
+                    // Se alege strategia disponibila
                     ContextHero strategy = new ContextHero(h);
                     if (!h.isStunned() && UtilsHero.isAlive(h)) {
                         strategy.executeStrategy(h);
@@ -84,21 +87,18 @@ class GameMechanics {
             }
             // Se verifica coliziuni
             this.checkCollisions();
-            this.AngelVisit(i);
+            this.angelVisit(i);
             fileWriter.writeNewLine();
         }
-//        this.printScoreboard();
         this.printScoreboard();
         fileWriter.close();
 
-//        System.out.println(UtilsHero.getMaxHp(heroes.get(0)));
     }
 
-    private void AngelVisit(int round) throws IOException {
+    private void angelVisit(final int round) throws IOException {
         ArrayList<Angel> myRoundAngels = new ArrayList<Angel>(myAngels.get(round));
         ArrayList<Hero> heroesToBeVisited = new ArrayList<Hero>();
         for (Angel angel : myRoundAngels) {
-//            System.out.println(angel);
             if (angel.getxCoordonate() != -1) {
                 Log.update(angel, fileWriter);
                 heroesToBeVisited.addAll(this.collisions(angel.getxCoordonate(),
@@ -111,7 +111,7 @@ class GameMechanics {
         }
     }
 
-    private ArrayList<Hero> collisions(int x, int y) {
+    private ArrayList<Hero> collisions(final int x, final int y) {
         ArrayList<Hero> returnHero = new ArrayList<Hero>();
         for (Hero h : heroes) {
             if (h.getxCoordonate() == x && h.getyCoordonate() == y) {
@@ -152,7 +152,6 @@ class GameMechanics {
                     traceMap[x][y] = heroes.indexOf(h);
                 } else {
                     startAttack(h, heroes.get(traceMap[x][y]), map[x][y]);
-                    this.printScoreboard();
                 }
             }
         }
@@ -160,14 +159,6 @@ class GameMechanics {
 
     private void startAttack(final Hero h1, final Hero h2, final char tile) throws IOException {
         ContextTile tileBonus = new ContextTile(tile);
-//        ContextHero strategy = new ContextHero(h1);
-//        if (!h1.isStunned() && UtilsHero.isAlive(h1)) {
-//            strategy.executeStrategy(h1);
-//        }
-//        strategy = new ContextHero(h2);
-//        if (!h2.isStunned() && UtilsHero.isAlive(h2)) {
-//            strategy.executeStrategy(h2);
-//        }
         tileBonus.executeStrategy(h1);
         tileBonus.executeStrategy(h2);
         h1.accept(h2);

@@ -40,10 +40,6 @@ class GameInput {
         return m;
     }
 
-    int getnPlayers() {
-        return nPlayers;
-    }
-
     int getnRounds() {
         return nRounds;
     }

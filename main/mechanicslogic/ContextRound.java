@@ -3,8 +3,6 @@ package main.mechanicslogic;
 import common.Constants;
 import fileio.implementations.FileWriter;
 import heroes.Hero;
-import main.Log;
-
 import java.io.IOException;
 
 public class ContextRound {
@@ -43,7 +41,15 @@ public class ContextRound {
         roundStrategy.doOperation(h1, h2);
     }
 
-    public void doOperation(final Hero h1, final Hero h2, final FileWriter fileWriter) throws IOException {
+    /**
+     * Overwrite. Operatie pentru contextul care implica doi campioni si un FileWriter
+     * @param h1
+     * @param h2
+     * @param fileWriter
+     * @throws IOException
+     */
+    public void doOperation(final Hero h1, final Hero h2, final FileWriter fileWriter)
+            throws IOException {
         roundStrategy.doOperation(h1, h2, fileWriter);
     }
 

@@ -119,4 +119,77 @@ public final class Constants {
     public static final int DARKANGEL_W = 20;
     public static final int DARKANGEL_R = 10;
 
+    public static final float DAMAGEANGEL_K = 0.150000f;
+    public static final float DAMAGEANGEL_P = 0.20f;
+    public static final float DAMAGEANGEL_R = 0.30f;
+    public static final float DAMAGEANGEL_W = 0.40f;
+
+    public static final float DRACULAF_K = -0.20f;
+    public static final float DRACULAF_P = -0.30f;
+    public static final float DRACULAF_R = -0.10001f;
+    public static final float DRACULAF_W = -0.40f;
+    public static final int DRACULA_K = -60;
+    public static final int DRACULA_P = -40;
+    public static final int DRACULA_R = -35;
+    public static final int DRACULA_W = -20;
+
+    public static final float GOODBOYF_K = 0.40f;
+    public static final float GOODBOYF_P = 0.50f;
+    public static final float GOODBOYF_R = 0.40f;
+    public static final float GOODBOYF_W = 0.30f;
+    public static final int GOODBOY_K = 20;
+    public static final int GOODBOY_P = 30;
+    public static final int GOODBOY_R = 40;
+    public static final int GOODBOY_W = 50;
+
+    public static final float LVLUPANG_K = 0.10f;
+    public static final float LVLUPANG_P = 0.20f;
+    public static final float LVLUPANG_R = 0.14999f;
+    public static final float LVLUPANG_W = 0.25f;
+
+    public static final int LIFEGIVER_K = 100;
+    public static final int LIFEGIVER_P = 80;
+    public static final int LIFEGIVER_R = 90;
+    public static final int LIFEGIVER_W = 120;
+
+    public static final float SMALLANGELF_K = 0.10f;
+    public static final float SMALLANGELF_P = 0.15f;
+    public static final float SMALLANGELF_R = 0.05f;
+    public static final float SMALLANGELF_W = 0.10f;
+    public static final int SMALLANGEL_K = 10;
+    public static final int SMALLANGEL_P = 15;
+    public static final int SMALLANGEL_R = 20;
+    public static final int SMALLANGEL_W = 25;
+
+    public static final int SPAWNER_K = 200;
+    public static final int SPAWNER_P = 150;
+    public static final int SPAWNER_R = 180;
+    public static final int SPAWNER_W = 120;
+    public static final int XPA_K = 45;
+    public static final int XPA_P = 50;
+    public static final int XPA_R = 40;
+    public static final int XPA_W = 60;
+    public static final float TREIME = 0.33f;
+    public static final float JUMATATE = 0.5f;
+    public static final float PATRIME = 0.25f;
+    public static final float SEPTIME = 0.142f;
+    public static final float CINCIME = 0.2f;
+    public static final float KNIGHT_H_1 = 0.8f;
+    public static final float KNIGHT_H_2 = 1.25f;
+    public static final float KNIGHT_D_1 = 0.50f;
+    public static final float KNIGHT_D_2 = -0.20f;
+    public static final float PYRO_H_1 = 0.75f;
+    public static final float PYRO_H_2 = 0.70f;
+    public static final float PYRO_D_1 = 1.33f;
+    public static final float PYRO_D_2 = -0.3f;
+    public static final float ROG_H_1 = 0.8571f;
+    public static final float ROG_H_2 = 0.40f;
+    public static final float ROG_D_1 = 1.5f;
+    public static final float ROG_D_2 = -0.1f;
+    public static final float WIZ_H_1 = 0.9f;
+    public static final float WIZ_D_1 = 0.60f;
+    public static final float WIZ_H_2 = 1.2f;
+    public static final float WIZ_D_2 = -0.20f;
+
+
 }

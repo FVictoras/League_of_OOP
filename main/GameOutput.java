@@ -4,7 +4,6 @@ import fileio.implementations.FileWriter;
 import heroes.Hero;
 import heroes.utils.UtilsHero;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -13,7 +12,7 @@ final class GameOutput {
 
     }
     static void printGame(final ArrayList<Hero> heroes,
-                          final  FileWriter fileWriter) throws IOException {
+                          final  FileWriter fileWriter) {
         // Se scrie in fisierul de output.
         try {
             fileWriter.writeWord("~~ Results ~~");
@@ -36,7 +35,6 @@ final class GameOutput {
                 }
             fileWriter.writeNewLine();
             }
-//            fileWriter.close();
         } catch (Exception e) {
             e.getStackTrace();
         }

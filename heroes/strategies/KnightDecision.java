@@ -1,24 +1,25 @@
 package heroes.strategies;
 
+import common.Constants;
 import heroes.Hero;
 
 
-public class KnightDecision implements heroStrategy {
+public class KnightDecision implements HeroStrategy {
 
     private int choice;
 
-    public KnightDecision(int choice)  {
+    public KnightDecision(final int choice)  {
         this.choice = choice;
     }
     @Override
-    public void setPlayersStrategy(Hero h) {
+    public final void setPlayersStrategy(final Hero h) {
         if (this.choice == 0) {
-            h.setHealth((int)(0.8f*h.getHealth()));
-            h.increaseDamageModifier(0.50f);
+            h.setHealth((int) (Constants.KNIGHT_H_1 * h.getHealth()));
+            h.increaseDamageModifier(Constants.KNIGHT_D_1);
         }
         if (this.choice == 1) {
-            h.setHealth((int)(1.25f*h.getHealth()));
-            h.increaseDamageModifier(-0.2f);
+            h.setHealth((int) (Constants.KNIGHT_H_2 * h.getHealth()));
+            h.increaseDamageModifier(Constants.KNIGHT_D_2);
         }
     }
 }

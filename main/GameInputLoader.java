@@ -76,25 +76,25 @@ class GameInputLoader {
                 moves.clear();
             }
             for (int i = 0; i < r; i++) {
-                int n_angels = file.nextInt();
+                int nAngels = file.nextInt();
                 Map<Integer, HashMap<String, ArrayList<Integer>>> aux =
                         new HashMap<Integer, HashMap<String, ArrayList<Integer>>>();
-                    if (n_angels == 0) {
+                    if (nAngels == 0) {
                         angelsOnTheMap.add(i, null);
                     } else {
-                        for (int j = 0; j<n_angels; j++) {
+                        for (int j = 0; j < nAngels; j++) {
                             ArrayList<Integer> coordonatesAngel = new ArrayList<Integer>(2);
                             String type = file.nextWord();
-                            String angel_type = type.substring(0, type.indexOf(","));
-                            int y_coord =
+                            String angelType = type.substring(0, type.indexOf(","));
+                            int yCoord =
                                     Integer.parseInt(type.substring(type.lastIndexOf(",") + 1));
-                            int x_coord = Integer.parseInt(type.substring(type.indexOf(",") + 1,
+                            int xCoord = Integer.parseInt(type.substring(type.indexOf(",") + 1,
                                     type.lastIndexOf(",")));
-                            coordonatesAngel.add(x_coord);
-                            coordonatesAngel.add(y_coord);
+                            coordonatesAngel.add(xCoord);
+                            coordonatesAngel.add(yCoord);
 
                             aux.put(j,
-                                    new HashMap<String, ArrayList<Integer>>() {{ put(angel_type,
+                                    new HashMap<String, ArrayList<Integer>>() {{ put(angelType,
                                             new ArrayList<Integer>(coordonatesAngel));
                             }});
                             coordonatesAngel.clear();

@@ -2,9 +2,6 @@ package main.mechanicslogic;
 
 import fileio.implementations.FileWriter;
 import heroes.Hero;
-import main.Log;
-
-import java.io.IOException;
 
 public class OvertimeDamage implements RoundStrategy {
     /**
@@ -25,7 +22,7 @@ public class OvertimeDamage implements RoundStrategy {
     }
 
     @Override
-    public void doOperation(Hero h1, Hero h2, FileWriter fileWriter) throws IOException {
+    public void doOperation(final Hero h1, final Hero h2, final FileWriter fileWriter) {
 
     }
 

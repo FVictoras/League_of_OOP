@@ -2,6 +2,6 @@ package heroes.strategies;
 
 import heroes.Hero;
 
-public interface heroStrategy {
+public interface HeroStrategy {
     void setPlayersStrategy(Hero h1);
 }

@@ -24,11 +24,11 @@ public class Pyromancer extends Hero {
         return "P";
     }
 
-    public String toString() {
+    public final String toString() {
         return "Pyromancer";
     }
 
-    public final void increaseDamageModifier(float val) {
+    public final void increaseDamageModifier(final float val) {
         this.damageModifier = this.damageModifier + val;
     }
 

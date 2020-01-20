@@ -2,7 +2,11 @@ package angels;
 
 import common.Constants;
 import fileio.implementations.FileWriter;
-import heroes.*;
+import heroes.Hero;
+import heroes.Pyromancer;
+import heroes.Knight;
+import heroes.Wizard;
+import heroes.Rogue;
 import heroes.utils.UtilsHero;
 import main.Log;
 
@@ -10,16 +14,16 @@ import java.io.IOException;
 
 public class DarkAngel extends Angel implements AngelVisitor  {
 
-    public DarkAngel(int xCoordonate, int yCoordonate) throws IOException {
+    public DarkAngel(final int xCoordonate, final int yCoordonate) throws IOException {
         super(xCoordonate, yCoordonate);
     }
     @Override
-    public String toString() {
+    public final String toString() {
         return "DarkAngel";
     }
 
     @Override
-    public void visit(Hero h, FileWriter fileWriter) throws IOException {
+    public final void visit(final Hero h, final FileWriter fileWriter) throws IOException {
         if (UtilsHero.isAlive(h)) {
             if (h instanceof Knight) {
                 h.setHealth(h.getHealth() - Constants.DARKANGEL_K);

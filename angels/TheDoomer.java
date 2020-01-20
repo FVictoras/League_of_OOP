@@ -1,25 +1,26 @@
 package angels;
 
-import heroes.*;
+import fileio.implementations.FileWriter;
+import heroes.Hero;
 import heroes.utils.UtilsHero;
 import main.Log;
-import fileio.implementations.FileWriter;
 
 import java.io.IOException;
 
 public class TheDoomer extends Angel implements AngelVisitor {
 
-    public TheDoomer(int xCoordonate, int yCoordonate) throws IOException {
+    public TheDoomer(final int xCoordonate, final  int yCoordonate) throws IOException {
         super(xCoordonate, yCoordonate);
     }
+
     @Override
-    public String toString() {
+    public final String toString() {
         return "TheDoomer";
     }
 
     @Override
-    public void visit(Hero h, FileWriter fileWriter) throws IOException {
-        if(UtilsHero.isAlive(h)) {
+    public final void visit(final Hero h, final FileWriter fileWriter) throws IOException {
+        if (UtilsHero.isAlive(h)) {
             h.setHealth(-1);
             Log.update(this, h, fileWriter);
             Log.updateA(h, fileWriter);

@@ -1,38 +1,35 @@
 package main;
 
-import angels.*;
+import angels.LifeGiver;
+import angels.SmallAngel;
+import angels.Spawner;
+import angels.XPAngel;
+import angels.LevelUpAngel;
+import angels.GoodBoy;
+import angels.DamageAngel;
+import angels.Angel;
+
 import heroes.Hero;
 
 import fileio.implementations.FileWriter;
 import java.io.IOException;
 
-public class Log {
-
-    public static void updateA(Hero h, FileWriter fileWriter) throws IOException {
-        fileWriter.writeWord("Player ");
-        fileWriter.writeWord(h.toString());
-        fileWriter.writeWord(" ");
-        fileWriter.writeInt(h.getId());
-        fileWriter.writeWord(" was killed by an angel");
-        fileWriter.writeNewLine();
+/*
+    Acesta este implementarea logului, care scrie mesaje in output. Plecand de la Patternul
+    Observer, am ajuns la aceasta adaptare considerand-o cea mai potrivita contextului dat de
+    problema. Are functii de update, overloaduite astfel incat sa suporte orice context de update.
+ */
+public final class Log {
+    private Log() {
     }
 
-    public static void updateB(Hero h, FileWriter fileWriter) throws IOException {
-        fileWriter.writeWord("Player ");
-        fileWriter.writeWord(h.toString());
-        fileWriter.writeWord(" ");
-        fileWriter.writeInt(h.getId());
-        fileWriter.writeWord(" was brought to life by an angel");
-        fileWriter.writeNewLine();
-    }
-
-    public static void update(int i, FileWriter fileWriter) throws IOException {
+    public static void update(final int i, final FileWriter fileWriter) throws IOException {
         fileWriter.writeWord("~~ Round ");
         fileWriter.writeInt(i);
         fileWriter.writeWord(" ~~");
         fileWriter.writeNewLine();
     }
-    public static void update(Hero h, FileWriter fileWriter) throws IOException {
+    public static void update(final Hero h, final FileWriter fileWriter) throws IOException {
         fileWriter.writeWord(h.toString());
         fileWriter.writeWord(" ");
         fileWriter.writeInt(h.getId());
@@ -41,7 +38,7 @@ public class Log {
         fileWriter.writeNewLine();
 
     }
-    public static void update(Angel a, FileWriter fileWriter) throws IOException {
+    public static void update(final Angel a, final FileWriter fileWriter) throws IOException {
         fileWriter.writeWord("Angel ");
         fileWriter.writeWord(a.toString());
         fileWriter.writeWord(" was spawned at ");
@@ -51,10 +48,11 @@ public class Log {
         fileWriter.writeNewLine();
 
     }
-    public static void update(Angel a, Hero h, FileWriter fileWriter) throws IOException {
-        if (a instanceof DamageAngel || a instanceof GoodBoy || a instanceof LevelUpAngel ||
-                a instanceof LifeGiver || a instanceof SmallAngel || a instanceof Spawner ||
-                a instanceof XPAngel) {
+    public static void update(final Angel a, final Hero h, final FileWriter fileWriter)
+            throws IOException {
+        if (a instanceof DamageAngel || a instanceof GoodBoy || a instanceof LevelUpAngel
+                || a instanceof LifeGiver || a instanceof SmallAngel || a instanceof Spawner
+                || a instanceof XPAngel) {
             fileWriter.writeWord(a.toString());
             fileWriter.writeWord(" helped ");
             fileWriter.writeWord(h.toString());
@@ -71,7 +69,8 @@ public class Log {
             fileWriter.writeNewLine();
         }
     }
-    public static void update(Hero h1, Hero h2, FileWriter fileWriter) throws IOException {
+    public static void update(final Hero h1, final Hero h2, final FileWriter fileWriter)
+            throws IOException {
         fileWriter.writeWord("Player ");
         fileWriter.writeWord(h2.toString());
         fileWriter.writeWord(" ");
@@ -83,14 +82,34 @@ public class Log {
         fileWriter.writeNewLine();
 
     }
-    public static void update(Hero h, int i, FileWriter fileWriter) throws IOException {
-        for (int j = i; j > 0; j--){
+    public static void update(final Hero h, final int i, final FileWriter fileWriter)
+            throws IOException {
+        for (int j = i; j > 0; j--) {
             fileWriter.writeWord(h.toString());
             fileWriter.writeWord(" ");
             fileWriter.writeInt(h.getId());
             fileWriter.writeWord(" reached level ");
-            fileWriter.writeInt(h.getLevel()-j+1);
+            fileWriter.writeInt(h.getLevel() - j + 1);
             fileWriter.writeNewLine();
         }
     }
+
+    public static void updateA(final Hero h, final FileWriter fileWriter) throws IOException {
+        fileWriter.writeWord("Player ");
+        fileWriter.writeWord(h.toString());
+        fileWriter.writeWord(" ");
+        fileWriter.writeInt(h.getId());
+        fileWriter.writeWord(" was killed by an angel");
+        fileWriter.writeNewLine();
+    }
+
+    public static void updateB(final Hero h, final FileWriter fileWriter) throws IOException {
+        fileWriter.writeWord("Player ");
+        fileWriter.writeWord(h.toString());
+        fileWriter.writeWord(" ");
+        fileWriter.writeInt(h.getId());
+        fileWriter.writeWord(" was brought to life by an angel");
+        fileWriter.writeNewLine();
+    }
+
 }

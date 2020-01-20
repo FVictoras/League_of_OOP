@@ -2,7 +2,7 @@ package main.mechanicslogic;
 
 import fileio.implementations.FileWriter;
 import heroes.Hero;
-import main.Log;
+
 
 import java.io.IOException;
 

@@ -24,11 +24,11 @@ public class Wizard extends Hero {
         return "W";
     }
 
-    public String toString() {
+    public final String toString() {
         return "Wizard";
     }
 
-    public final void increaseDamageModifier(float val) {
+    public final void increaseDamageModifier(final float val) {
         this.damageModifier = this.damageModifier + val;
     }
     private int drain(final Hero h) {

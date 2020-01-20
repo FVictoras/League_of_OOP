@@ -1,23 +1,24 @@
 package heroes.strategies;
 
+import common.Constants;
 import heroes.Hero;
 
-public class RogueDecision implements heroStrategy {
+public class RogueDecision implements HeroStrategy {
 
     private int choice;
 
-    public RogueDecision(int choice)  {
+    public RogueDecision(final int choice)  {
         this.choice = choice;
     }
     @Override
-    public void setPlayersStrategy(Hero h) {
+    public final void setPlayersStrategy(final Hero h) {
         if (this.choice == 0) {
-            h.setHealth((int)(0.8571f*h.getHealth()));
-            h.increaseDamageModifier(0.40f);
+            h.setHealth((int) (Constants.ROG_H_1 * h.getHealth()));
+            h.increaseDamageModifier(Constants.ROG_D_1);
         }
         if (this.choice == 1) {
-            h.setHealth((int)(1.5f*h.getHealth()));
-            h.increaseDamageModifier(-0.1f);
+            h.setHealth((int) (Constants.ROG_H_2 * h.getHealth()));
+            h.increaseDamageModifier(Constants.ROG_D_2);
         }
     }
 }

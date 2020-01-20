@@ -19,22 +19,22 @@ public abstract class Hero {
     private int health, xp, level, xCoordonate, yCoordonate, damageOvertime, roundsOvertime,
             roundsStunned, id;
 
-    public boolean isStunned() {
+    public final boolean isStunned() {
         return stunned;
     }
 
-    public void setStunned(boolean stunned) {
+    public final void setStunned(final boolean stunned) {
         this.stunned = stunned;
     }
 
     private boolean stunned;
     private ArrayList<Integer> lastDamageReceived;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 
@@ -49,7 +49,11 @@ public abstract class Hero {
     public final void setRoundsOvertime(final int roundsOvertime) {
         this.roundsOvertime = roundsOvertime;
     }
-    public String toString() { return "Hero"; }
+    /**
+     *  Afisare clasa.
+     */public String toString() {
+        return "Hero";
+    }
 
     final ArrayList<Integer> getLastDamageReceived() {
         return lastDamageReceived;
@@ -148,6 +152,10 @@ public abstract class Hero {
 
     public abstract void increaseDamageModifier(float val);
 
+    /**
+     * Afiseaza un emote.
+     * @return
+     */
     public String emote() {
         return null;
     }
